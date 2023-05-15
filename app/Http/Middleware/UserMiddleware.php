@@ -15,7 +15,7 @@ class UserMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->user() && $request->user()->level != 'user') {
+        if ($request->user() && $request->user()->roles != 'user') {
             return view('unauthorized')->with('role', 'USER');
         }
         return $next($request);
