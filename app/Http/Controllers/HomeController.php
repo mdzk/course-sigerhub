@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderShipped;
 use App\Models\Users;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -31,7 +33,9 @@ class HomeController extends Controller
 
     public function verify(Request $request, $id): RedirectResponse
     {
-        Users::findOrFail($id)->update(['status' => 'active']);
+        $data = Users::findOrFail($id);
+        $data->update(['status' => 'active']);
+        Mail::to($data['email'])->send(new OrderShipped());
         return redirect()->route('home');
     }
 }
