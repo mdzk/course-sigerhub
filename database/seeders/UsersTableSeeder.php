@@ -24,6 +24,8 @@ class UsersTableSeeder extends Seeder
                 'password' => Hash::make('admin'),
                 'roles' => 'admin',
                 'status' => 'active',
+                'first_attemp' => false,
+                'image' => 'default.png',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ], [
@@ -32,6 +34,8 @@ class UsersTableSeeder extends Seeder
                 'password' => Hash::make('user'),
                 'roles' => 'user',
                 'status' => 'active',
+                'first_attemp' => false,
+                'image' => 'default.png',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ], [
@@ -40,6 +44,8 @@ class UsersTableSeeder extends Seeder
                 'password' => Hash::make('trial'),
                 'roles' => 'user',
                 'status' => 'pending',
+                'first_attemp' => true,
+                'image' => 'default.png',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ]

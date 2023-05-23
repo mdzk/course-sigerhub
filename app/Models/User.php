@@ -26,6 +26,8 @@ class User extends Authenticatable
         'bidang_usaha',
         'nohp',
         'status',
+        'image',
+        'first_attemp',
     ];
 
     /**

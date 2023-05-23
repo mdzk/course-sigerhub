@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\OrderShipped;
-use App\Models\Users;
+use App\Mail\AccountActived;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -27,15 +27,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = Users::where('status', 'pending')->get();
+        $users = User::where('status', 'pending')->get();
         return view('home', compact('users'));
     }
 
     public function verify(Request $request, $id): RedirectResponse
     {
-        $data = Users::findOrFail($id);
+        $data = User::findOrFail($id);
+        Mail::to($data['email'])->send(new AccountActived($data));
         $data->update(['status' => 'active']);
-        Mail::to($data['email'])->send(new OrderShipped());
         return redirect()->route('home');
     }
 }

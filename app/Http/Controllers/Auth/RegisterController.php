@@ -77,6 +77,8 @@ class RegisterController extends Controller
             'roles' => 'user',
             'status' => 'pending',
             'password' => Hash::make($random),
+            'first_attemp' => true,
+            'image' => 'default.png'
         ]);
     }
 }
