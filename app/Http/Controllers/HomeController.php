@@ -7,6 +7,9 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -34,8 +37,17 @@ class HomeController extends Controller
     public function verify(Request $request, $id): RedirectResponse
     {
         $data = User::findOrFail($id);
-        Mail::to($data['email'])->send(new AccountActived($data));
-        $data->update(['status' => 'active']);
+        $password = Str::random(8);
+        $data->update([
+            'status' => 'active',
+            'password' => Hash::make($password),
+        ]);
+
+        Mail::to($data['email'])->send(new AccountActived($data, $password));
+        Http::asForm()->post('http://localhost:9000/send-message', [
+            'number' => $data['nohp'],
+            'message' => $password,
+        ]);
         return redirect()->route('home');
     }
 }

@@ -16,10 +16,11 @@ class AccountActived extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(protected User $user)
+    public function __construct(protected User $user, protected $password)
     {
         //
         $this->user = $user;
+        $this->password = $password;
     }
 
     /**
@@ -28,7 +29,7 @@ class AccountActived extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Your Account has Actived',
+            subject: 'Akun Berhasil Diaktifkan',
         );
     }
 
@@ -41,6 +42,7 @@ class AccountActived extends Mailable
             view: 'mail.hello',
             with: [
                 'user' => $this->user,
+                'password' => $this->password,
             ],
         );
     }
