@@ -6,6 +6,7 @@ use App\Mail\AccountActived;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
@@ -30,6 +31,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if (Auth::user()->first_attemp == 1) {
+            return "halo";
+        }
         $users = User::where('status', 'pending')->get();
         return view('home', compact('users'));
     }

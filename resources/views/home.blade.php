@@ -15,6 +15,7 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+                    {{ Auth::user()->first_attemp }}
                         
                     @if (Auth::user()->roles == 'admin')
                     <ul>
