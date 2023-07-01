@@ -21,7 +21,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -29,14 +29,24 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
     public function index()
     {
-        if (Auth::user()->first_attemp == 1) {
-            return "halo";
-        }
-        $users = User::where('status', 'pending')->get();
-        return view('home', compact('users'));
+        return view('home.homepage');
     }
+
+    public function event()
+    {
+        return view('home.event');
+    }
+    // public function index()
+    // {
+    //     if (Auth::user()->first_attemp == 1) {
+    //         return "halo";
+    //     }
+    //     $users = User::where('status', 'pending')->get();
+    //     return view('home', compact('users'));
+    // }
 
     public function verify(Request $request, $id): RedirectResponse
     {

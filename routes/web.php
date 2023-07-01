@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\ChangeDefaultPasswordController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\User\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,15 +16,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('admin.index');
-});
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/event', [HomeController::class, 'event']);
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+
 
 Route::get('/admin', function () {
     return 'your admin';
 })->middleware('admin');
 
 Auth::routes();
+Route::get('/auth/reset', [ChangeDefaultPasswordController::class, 'index'])->middleware('auth');
+Route::post('/auth/reset/update', [ChangeDefaultPasswordController::class, 'update'])->name('password-update')->middleware('auth');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/verify/{id}', [HomeController::class, 'verify'])->name('verify');
