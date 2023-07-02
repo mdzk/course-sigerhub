@@ -1,11 +1,13 @@
 @extends('layouts.auth')
 
+@section('title', 'Register')
+
 @section('content')
 <div class="row h-100">
     <div class="col-lg-5 col-12">
         <div id="auth-left">
             <div class="auth-logo">
-                <a href="index.html"><img src="{{ url('') }}/assets/static/images/logo/logo.png" alt="Logo"></a>
+                <a href="{{ url('') }}"><img src="{{ url('') }}/assets/static/images/logo/logo.png" alt="Logo"></a>
             </div>
             <h1 class="auth-title">Register</h1>
             <p class="mb-5">Dapatkan pengetahuan dan wawasan bisnis terkini.</p>

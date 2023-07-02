@@ -39,14 +39,11 @@ class HomeController extends Controller
     {
         return view('home.event');
     }
-    // public function index()
-    // {
-    //     if (Auth::user()->first_attemp == 1) {
-    //         return "halo";
-    //     }
-    //     $users = User::where('status', 'pending')->get();
-    //     return view('home', compact('users'));
-    // }
+    public function home()
+    {
+        $users = User::where('status', 'pending')->get();
+        return view('home', compact('users'));
+    }
 
     public function verify(Request $request, $id): RedirectResponse
     {

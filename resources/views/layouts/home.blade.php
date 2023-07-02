@@ -4,12 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Siger Innovation Hub</title>
+    <title> @yield('title') | Siger Innovation Hub </title>
     <link rel="stylesheet" href="./assets/compiled/css/app.css" />
   <link rel="stylesheet" href="./assets/compiled/css/iconsax.css" />
   <link rel="stylesheet" href="./assets/compiled/css/app-dark.css" />
   <link rel="stylesheet" href="./assets/compiled/css/iconly.css" />
-    <link rel="shortcut icon" href="assets/static/images/logo/favicon.svg" type="image/x-icon">
     <link rel="shortcut icon" href="assets/static/images/logo/favicon.png" type="image/png">
     @stack('styles')
 </head>
@@ -21,7 +20,7 @@
             <nav class="navbar navbar-expand-lg bg-white">
                 <div class="container">
                     <!-- Logo Brand -->
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="{{ url('') }}">
                         <img src="assets/static/images/logo/logo.png" alt="Logo Brand" height="50">
                     </a>
 
@@ -38,7 +37,7 @@
                                 <a class="nav-link" href="#">Kelas inkubasi</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Event</a>
+                                <a class="nav-link" href="{{ url('event') }}">Event</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Tentang Kami</a>
@@ -51,7 +50,7 @@
 
                     <!-- Tombol Action (dengan kelas d-lg-none untuk responsif) -->
                     <div class="d-flex d-none d-md-none d-lg-block">
-                        <button class="btn btn-lg btn-primary p-3">Daftar Sekarang, Gratis !</button>
+                        <a href="{{ url('register') }}" class="btn btn-lg btn-primary p-3">Daftar Sekarang, Gratis !</a>
                     </div>
                 </div>
             </nav>

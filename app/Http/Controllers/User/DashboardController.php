@@ -19,6 +19,6 @@ class DashboardController extends Controller
         if (Auth::user()->first_attemp == 1) {
             return redirect('auth/reset');
         }
-        return view('admin.index');
+        return view('admin.dashboard');
     }
 }

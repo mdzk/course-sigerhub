@@ -58,7 +58,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'nama_usaha' => ['required', 'string'],
             'bidang_usaha' => ['required', 'string'],
-            'nohp' => ['required', 'integer'],
+            'nohp' => ['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
         ]);
     }

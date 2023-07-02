@@ -1,5 +1,7 @@
 @extends('layouts.auth')
 
+@section('title', 'Ganti Password Default')
+
 @push('styles')
 <link rel="stylesheet" href="{{ url('') }}/assets/extensions/sweetalert2/sweetalert2.min.css"/>    
 @endpush
@@ -18,7 +20,7 @@
     <div class="col-lg-5 col-12">
         <div id="auth-left">
             <div class="auth-logo">
-                <a href="index.html"><img src="{{ url('') }}/assets/static/images/logo/logo.png" alt="Logo"></a>
+                <a href="{{ url('') }}"><img src="{{ url('') }}/assets/static/images/logo/logo.png" alt="Logo"></a>
             </div>
             <h1 class="auth-title">Ganti Password Default</h1>
             <p class="mb-5">Silahkan ganti password default anda dengan password baru</p>

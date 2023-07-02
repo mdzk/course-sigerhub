@@ -1,5 +1,7 @@
 @extends('layouts.home')
 
+@section('title', 'Home')
+
 @section('content')
 <section class="my-5 py-5">
     <div class="container">
@@ -72,7 +74,7 @@
                             akan
                             dapat dengan mudah memahami dan mempelajari materi yang disediakan. Daftar sekarang, untuk
                             mendapatkan akses kelas</p>
-                        <a href="#" class="btn btn-lg btn-warning text-white p-3">Daftar Sekarang, Gratis !</a>
+                        <a href="{{ url('register') }}" class="btn btn-lg btn-warning text-white p-3">Daftar Sekarang, Gratis !</a>
                     </div>
                 </div>
             </div>

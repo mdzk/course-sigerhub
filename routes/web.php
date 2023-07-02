@@ -29,5 +29,5 @@ Auth::routes();
 Route::get('/auth/reset', [ChangeDefaultPasswordController::class, 'index'])->middleware('auth');
 Route::post('/auth/reset/update', [ChangeDefaultPasswordController::class, 'update'])->name('password-update')->middleware('auth');
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
 Route::post('/verify/{id}', [HomeController::class, 'verify'])->name('verify');
