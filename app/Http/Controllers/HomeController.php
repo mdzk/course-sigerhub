@@ -34,11 +34,20 @@ class HomeController extends Controller
     {
         return view('home.homepage');
     }
-
+    public function class()
+    {
+        return view('home.class');
+    }
     public function event()
     {
         return view('home.event');
     }
+
+    public function contact()
+    {
+        return view('home.contact');
+    }
+
     public function home()
     {
         $users = User::where('status', 'pending')->get();

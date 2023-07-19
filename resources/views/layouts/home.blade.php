@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> @yield('title') | Siger Innovation Hub </title>
     <link rel="stylesheet" href="./assets/compiled/css/app.css" />
-  <link rel="stylesheet" href="./assets/compiled/css/iconsax.css" />
-  <link rel="stylesheet" href="./assets/compiled/css/app-dark.css" />
-  <link rel="stylesheet" href="./assets/compiled/css/iconly.css" />
+    <link rel="stylesheet" href="./assets/compiled/css/iconsax.css" />
+    <link rel="stylesheet" href="./assets/compiled/css/app-dark.css" />
+    <link rel="stylesheet" href="./assets/compiled/css/iconly.css" />
     <link rel="shortcut icon" href="assets/static/images/logo/favicon.png" type="image/png">
     @stack('styles')
 </head>
@@ -16,7 +16,7 @@
 <body>
     <script src="assets/static/js/initTheme.js"></script>
     <div id="app">
-        <header class="mb-5">
+        <header class="">
             <nav class="navbar navbar-expand-lg bg-white">
                 <div class="container">
                     <!-- Logo Brand -->
@@ -30,20 +30,27 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
+                    @php
+                        function setActive($url, $class = 'active')
+                        {
+                            return request()->is($url) ? $class : '';
+                        }
+                    @endphp
+
                     <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                         <!-- Daftar Menu -->
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Kelas inkubasi</a>
+                                <a class="nav-link {{ setActive('class') }}" href="{{ url('class') }}">Kelas inkubasi</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('event') }}">Event</a>
+                                <a class="nav-link {{ setActive('event') }}" href="{{ url('event') }}">Event</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Tentang Kami</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Kontak</a>
+                                <a class="nav-link {{ setActive('contact') }}" href="{{ url('contact') }}">Kontak</a>
                             </li>
                         </ul>
                     </div>
@@ -56,7 +63,7 @@
             </nav>
 
         </header>
-        
+
         @yield('content')
 
         <footer>
@@ -94,10 +101,12 @@
                                 <h5>Get In Touch</h5>
                                 <hr>
                                 <ul class="list-unstyled d-flex flex-column">
-                                    <li class="py-1"><i class="icon-calendar-2 text-primary me-2"></i> Senin - Jumat / 10.00 -
+                                    <li class="py-1"><i class="icon-calendar-2 text-primary me-2"></i> Senin - Jumat /
+                                        10.00 -
                                         17.00
                                     </li>
-                                    <li class="py-1"><i class="icon-call text-primary me-2"></i> +62 822 7857 4388</li>
+                                    <li class="py-1"><i class="icon-call text-primary me-2"></i> +62 822 7857 4388
+                                    </li>
                                 </ul>
                             </div>
                         </div>

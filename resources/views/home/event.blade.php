@@ -1,5 +1,7 @@
 @extends('layouts.home')
 
+@section('title', 'Event')
+
 @section('content')
 <section class="my-5 py-5">
     <div class="container">

@@ -17,9 +17,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/event', [HomeController::class, 'event']);
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+Route::get('/class', [HomeController::class, 'class'])->name('class');
+Route::get('/event', [HomeController:: class, 'event'])->name('event');
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 
 Route::get('/admin', function () {
     return 'your admin';
