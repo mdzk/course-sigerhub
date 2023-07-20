@@ -43,6 +43,10 @@ class HomeController extends Controller
         return view('home.event');
     }
 
+    public function about()
+    {
+        return view('home.about');
+    }
     public function contact()
     {
         return view('home.contact');

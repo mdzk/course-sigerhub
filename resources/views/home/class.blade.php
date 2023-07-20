@@ -39,7 +39,7 @@
         <div class="container">
             <div class="page-content row py-5">
                 <div class="col-md-12 col-sm-12 mt-5">
-                    <div class="row">
+                    <div class="row mb-5">
                         <div class="col-md-12">
                             <h4>Kategori Kelas :</h4>
                         </div>
@@ -50,6 +50,107 @@
                             <a class="btn me-3 p-3 btn-lg btn-secondary">
                                 Pengembangan Produk
                             </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>Daftar Kelas :</h4>
+                        </div>
+                        <div class="col-md-12 mt-5">
+                            <div class="row d-flex flex-wrap justify-content-evenly">
+                                <div class="col-md-4 p-2">
+                                    <div class="shadow-lg card mb-5 p-4">
+                                        <div class="position-relative">
+                                            <img class="img-fluid rounded mb-4"
+                                                src="assets/static/images/samples/building.jpg" alt="">
+                                            <div class="badge p-2 fw-normal bg-secondary position-absolute class-category">Hello</div>
+                                        </div>
+
+                                        <div class="col-auto">
+                                            <div class="d-flex align-items-center mb-4">
+                                                <span class="mt-1 text-black fw-bold" href="">Kelas Inkubasi
+                                                    Bisnis</span>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-md-12">
+                                                    <span>Kelas ini dibangun untuk para UMKM dan koperasi dalam
+                                                        mengembangkan bisnis...</span>
+                                                </div>
+                                            </div>
+                                            <a href="" class="btn btn-lg btn-primary d-block">Segera Belajar!</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 p-2">
+                                    <div class="shadow-lg card mb-5 p-4">
+                                        <div class="position-relative">
+                                            <img class="img-fluid rounded mb-4"
+                                                src="assets/static/images/samples/building.jpg" alt="">
+                                            <div class="badge p-2 fw-normal bg-secondary position-absolute class-category">Hello</div>
+                                        </div>
+
+                                        <div class="col-auto">
+                                            <div class="d-flex align-items-center mb-4">
+                                                <span class="mt-1 text-black fw-bold" href="">Kelas Inkubasi
+                                                    Bisnis</span>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-md-12">
+                                                    <span>Kelas ini dibangun untuk para UMKM dan koperasi dalam
+                                                        mengembangkan bisnis...</span>
+                                                </div>
+                                            </div>
+                                            <a href="" class="btn btn-lg btn-primary d-block">Segera Belajar!</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 p-2">
+                                    <div class="shadow-lg card mb-5 p-4">
+                                        <div class="position-relative">
+                                            <img class="img-fluid rounded mb-4"
+                                                src="assets/static/images/samples/building.jpg" alt="">
+                                            <div class="badge p-2 fw-normal bg-secondary position-absolute class-category">Hello</div>
+                                        </div>
+
+                                        <div class="col-auto">
+                                            <div class="d-flex align-items-center mb-4">
+                                                <span class="mt-1 text-black fw-bold" href="">Kelas Inkubasi
+                                                    Bisnis</span>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-md-12">
+                                                    <span>Kelas ini dibangun untuk para UMKM dan koperasi dalam
+                                                        mengembangkan bisnis...</span>
+                                                </div>
+                                            </div>
+                                            <a href="" class="btn btn-lg btn-primary d-block">Segera Belajar!</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 p-2">
+                                    <div class="shadow-lg card mb-5 p-4">
+                                        <div class="position-relative">
+                                            <img class="img-fluid rounded mb-4"
+                                                src="assets/static/images/samples/building.jpg" alt="">
+                                            <div class="badge p-2 fw-normal bg-secondary position-absolute class-category">Hello</div>
+                                        </div>
+
+                                        <div class="col-auto">
+                                            <div class="d-flex align-items-center mb-4">
+                                                <span class="mt-1 text-black fw-bold" href="">Kelas Inkubasi
+                                                    Bisnis</span>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-md-12">
+                                                    <span>Kelas ini dibangun untuk para UMKM dan koperasi dalam
+                                                        mengembangkan bisnis...</span>
+                                                </div>
+                                            </div>
+                                            <a href="" class="btn btn-lg btn-primary d-block">Segera Belajar!</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

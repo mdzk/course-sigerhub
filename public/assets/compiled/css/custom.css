@@ -12,3 +12,30 @@
     bottom: -7.5rem;
     transform: translateX(-50%);
 }
+
+.img-hero {
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    bottom: -38rem;
+    transform: translateX(-50%);
+}
+
+.img-hero img {
+    height: 35rem;
+    object-fit: cover;
+}
+
+.class-category {
+    top: 10px;
+    right: 10px;
+    color: black;
+}
+
+.about-title {
+    padding: 1.5rem 0rem 10rem 0;
+}
+
+.about-section {
+    padding-top: 34rem !important;
+}

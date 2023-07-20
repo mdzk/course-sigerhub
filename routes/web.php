@@ -18,7 +18,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/class', [HomeController::class, 'class'])->name('class');
-Route::get('/event', [HomeController:: class, 'event'])->name('event');
+Route::get('/class-detail', function () {
+    return view('home.class-detail');
+});
+Route::get('/event', [HomeController::class, 'event'])->name('event');
+Route::get('/event-detail', function () {
+    return view('home.event-detail');
+});
+Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');

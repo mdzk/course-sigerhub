@@ -47,7 +47,7 @@
                                 <a class="nav-link {{ setActive('event') }}" href="{{ url('event') }}">Event</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Tentang Kami</a>
+                                <a class="nav-link {{ setActive('about') }}" href="{{ url('about') }}">Tentang Kami</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link {{ setActive('contact') }}" href="{{ url('contact') }}">Kontak</a>
