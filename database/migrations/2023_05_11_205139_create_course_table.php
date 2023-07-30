@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('description');
             $table->unsignedBigInteger('id_categories');
             $table->foreign('id_categories')->references('id')->on('categories');
+            $table->string('thumbnail');
             $table->timestamps();
         });
     }
