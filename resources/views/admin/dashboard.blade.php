@@ -29,7 +29,7 @@
                                     </div>
                                     <div class="ms-3 name">
                                         <h5 class="font-bold">Pengguna Aktif</h5>
-                                        <h6 class="text-muted font-extrabold mb-0">20</h6>
+                                        <h6 class="text-muted font-extrabold mb-0">{{ $data['users_count'] }}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -44,7 +44,7 @@
                                     </div>
                                     <div class="ms-3 name">
                                         <h5 class="font-bold">Jumlah Kelas</h5>
-                                        <h6 class="text-muted font-extrabold mb-0">12</h6>
+                                        <h6 class="text-muted font-extrabold mb-0">{{ $data['course_count'] }}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -55,7 +55,7 @@
                             <div class="card-body py-4 px-4">
                                 <div class="d-flex align-items-center">
                                     <div class="avatar avatar-xl border border-4 border-primary">
-                                        <img src="assets/static/images/faces/1.jpg" alt="Face 1">
+                                        <img src="assets/static/images/faces/{{ Auth::user()->image }}" alt="Face 1">
                                     </div>
                                     <div class="ms-3 name">
                                         <h5 class="font-bold">{{ Auth::user()->name }}</h5>
@@ -85,14 +85,23 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Sugeng Riyadi</td>
-                                            <td>Koperasi Maju</td>
-                                            <td>Pengelolaan Ternak</td>
-                                            <td>koperasimaju@gmail.com</td>
-                                            <td>0894567823898</td>
-                                        </tr>
+                                        @php
+                                            $i = 1;
+                                        @endphp
+                                        @forelse ($users as $user)
+                                            <tr>
+                                                <td>{{ $i++ }}</td>
+                                                <td>{{ $user->name }}</td>
+                                                <td>{{ $user->nama_usaha }}</td>
+                                                <td>{{ $user->bidang_usaha }}</td>
+                                                <td>{{ $user->email }}</td>
+                                                <td>{{ $user->nohp }}</td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td class="text-center" colspan="6">Data tidak tersedia</td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
@@ -120,20 +129,30 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Kelas Inkubasi</td>
-                                            <td>Pengembangan bisnis</td>
-                                            <td>Kelas ini dikembangkan untuk UMKM...</td>
-                                            <td>
-                                                <button type="button" class="btn btn-info text-white">
-                                                    <i class="icon-edit"></i> Edit
-                                                </button>
-                                                <button type="button" class="btn btn-danger text-white">
-                                                    <i class="icon-trash"></i> Hapus
-                                                </button>
-                                            </td>
-                                        </tr>
+                                        @php
+                                            $i = 1;
+                                        @endphp
+                                        @forelse ($courses as $course)
+                                            <tr>
+                                                <td>{{ $i++ }}</td>
+                                                <td>{{ $course->titile_course }}</td>
+                                                <td>{{ $course->name_category }}</td>
+                                                <td>{{ Str::limit($course->description, 20) }}</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-info text-white">
+                                                        <i class="icon-edit"></i> Edit
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger text-white">
+                                                        <i class="icon-trash"></i> Hapus
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td class="text-center" colspan="6">Data tidak tersedia</td>
+                                            </tr>
+                                        @endforelse
+
                                     </tbody>
                                 </table>
                             </div>
