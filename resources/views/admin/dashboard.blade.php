@@ -3,15 +3,15 @@
 @section('title', 'Dashboard')
 
 @push('styles')
-    <link rel="stylesheet" href="assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" href="assets/scss/pages/datatables.scss">
+    <link rel="stylesheet" href="{{ url('') }}/assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="{{ url('') }}/assets/scss/pages/datatables.scss">
     @livewireStyles()
 @endpush
 
 @push('scripts')
-    <script src="assets/extensions/jquery/jquery.min.js"></script>
+    <script src="{{ url('') }}/assets/extensions/jquery/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js"></script>
-    <script src="assets/static/js/pages/datatables.js"></script>
+    <script src="{{ url('') }}/assets/static/js/pages/datatables.js"></script>
     @livewireScripts()
 @endpush
 
@@ -55,7 +55,8 @@
                             <div class="card-body py-4 px-4">
                                 <div class="d-flex align-items-center">
                                     <div class="avatar avatar-xl border border-4 border-primary">
-                                        <img src="assets/static/images/faces/{{ Auth::user()->image }}" alt="Face 1">
+                                        <img src="{{ url('') }}/assets/static/images/faces/{{ Auth::user()->image }}"
+                                            alt="Face 1">
                                     </div>
                                     <div class="ms-3 name">
                                         <h5 class="font-bold">{{ Auth::user()->name }}</h5>

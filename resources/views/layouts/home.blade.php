@@ -5,23 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> @yield('title') | Siger Innovation Hub </title>
-    <link rel="stylesheet" href="./assets/compiled/css/app.css" />
-    <link rel="stylesheet" href="./assets/compiled/css/iconsax.css" />
-    <link rel="stylesheet" href="./assets/compiled/css/app-dark.css" />
-    <link rel="stylesheet" href="./assets/compiled/css/iconly.css" />
-    <link rel="shortcut icon" href="assets/static/images/logo/favicon.png" type="image/png">
+    <link rel="stylesheet" href="{{ url('') }}/assets/compiled/css/app.css" />
+    <link rel="stylesheet" href="{{ url('') }}/assets/compiled/css/iconsax.css" />
+    <link rel="stylesheet" href="{{ url('') }}/assets/compiled/css/app-dark.css" />
+    <link rel="stylesheet" href="{{ url('') }}/assets/compiled/css/iconly.css" />
+    <link rel="shortcut icon" href="{{ url('') }}/assets/static/images/logo/favicon.png" type="image/png">
     @stack('styles')
 </head>
 
 <body>
-    <script src="assets/static/js/initTheme.js"></script>
+    <script src="{{ url('') }}/assets/static/js/initTheme.js"></script>
     <div id="app">
         <header class="">
             <nav class="navbar navbar-expand-lg bg-white">
                 <div class="container">
                     <!-- Logo Brand -->
                     <a class="navbar-brand" href="{{ url('') }}">
-                        <img src="assets/static/images/logo/logo.png" alt="Logo Brand" height="50">
+                        <img src="{{ url('') }}/assets/static/images/logo/logo.png" alt="Logo Brand" height="50">
                     </a>
 
                     <!-- Toggler untuk responsive navbar -->
@@ -71,7 +71,7 @@
             <div class="container clearfix my-5 py-5">
                 <div class="row">
                     <div class="col-md-4 pe-5">
-                        <img src="assets/static/images/logo/logo.png" alt="Logo Brand" height="50">
+                        <img src="{{ url('') }}/assets/static/images/logo/logo.png" alt="Logo Brand" height="50">
                         <h5 class="mt-4">Menjadi inkubator bisnis berbasis koperasi pertama di indonesia</h5>
                         <hr>
                         <p class="text-primary fw-bold mb-2">Email : sigerhub@gmail.com</p>
@@ -116,9 +116,9 @@
             </div>
         </footer>
     </div>
-    <script src="assets/static/js/components/dark.js"></script>
-    <script src="assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="assets/compiled/js/app.js"></script>
+    <script src="{{ url('') }}/assets/static/js/components/dark.js"></script>
+    <script src="{{ url('') }}/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="{{ url('') }}/assets/compiled/js/app.js"></script>
 
     @stack('scripts')
 </body>

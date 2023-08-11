@@ -72,6 +72,6 @@ class HomeController extends Controller
             'number' => $data['nohp'],
             'message' => $password,
         ]);
-        return redirect()->route('home');
+        return redirect()->route('dashboard');
     }
 }

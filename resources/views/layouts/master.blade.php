@@ -5,23 +5,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title> @yield('title') | Siger Innovation Hub </title>
-    <link rel="shortcut icon" href="assets/static/images/logo/favicon.png" type="image/png">
-    <link rel="stylesheet" href="./assets/compiled/css/app.css" />
-    <link rel="stylesheet" href="./assets/compiled/css/iconsax.css" />
-    <link rel="stylesheet" href="./assets/compiled/css/app-dark.css" />
+    <link rel="shortcut icon" href="{{ url('') }}/assets/static/images/logo/favicon.png" type="image/png">
+    <link rel="stylesheet" href="{{ url('') }}/assets/compiled/css/app.css" />
+    <link rel="stylesheet" href="{{ url('') }}/assets/compiled/css/iconsax.css" />
+    <link rel="stylesheet" href="{{ url('') }}/assets/compiled/css/app-dark.css" />
     @stack('styles')
 </head>
 
 <body>
-    <script src="assets/static/js/initTheme.js"></script>
+    <script src="{{ url('') }}/assets/static/js/initTheme.js"></script>
     <div id="app">
         <div id="sidebar">
             <div class="sidebar-wrapper active shadow-lg">
                 <div class="sidebar-header position-relative">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="logo">
-                            <a href="index.html"><img src="./assets/compiled/png/logo.png" alt="Logo"
-                                    srcset="" /></a>
+                            <a href="index.html"><img src="{{ url('') }}/assets/compiled/png/logo.png"
+                                    alt="Logo" srcset="" /></a>
                         </div>
                         <div class="sidebar-toggler x">
                             <a href="#" class="sidebar-hide d-xl-none d-block"><i
@@ -29,24 +29,33 @@
                         </div>
                     </div>
                 </div>
+
+                @php
+                    function setActive($url, $class = 'active')
+                    {
+                        return request()->is($url) ? $class : '';
+                    }
+                @endphp
+
                 <div class="sidebar-menu">
                     <ul class="menu">
-                        <li class="sidebar-item active">
-                            <a href="index.html" class="sidebar-link">
+                        <li class="sidebar-item {{ setActive('dashboard') }}">
+                            <a href="{{ url('dashboard') }}" class="sidebar-link">
                                 <i class="d-flex icon-home"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
 
-                        <li class="sidebar-item has-sub">
+                        <li class="sidebar-item has-sub {{ setActive('dashboard/user-verification') }}">
                             <a href="#" class="sidebar-link">
                                 <i class="d-flex icon-activity"></i>
                                 <span>Manajemen Usaha</span>
                             </a>
 
                             <ul class="submenu">
-                                <li class="submenu-item">
-                                    <a href="usaha-verifikasi.html" class="submenu-link">Verifikasi Akun Usaha</a>
+                                <li class="submenu-item {{ setActive('dashboard/user-verification') }}">
+                                    <a href="{{ url('dashboard/user-verification') }}" class="submenu-link">Verifikasi
+                                        Akun Usaha</a>
                                 </li>
 
                                 <li class="submenu-item">
@@ -155,9 +164,9 @@
 
         </div>
     </div>
-    <script src="assets/static/js/components/dark.js"></script>
-    <script src="assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="assets/compiled/js/app.js"></script>
+    <script src="{{ url('') }}/assets/static/js/components/dark.js"></script>
+    <script src="{{ url('') }}/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="{{ url('') }}/assets/compiled/js/app.js"></script>
     @stack('scripts')
 </body>
 
