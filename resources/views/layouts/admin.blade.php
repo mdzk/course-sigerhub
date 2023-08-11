@@ -39,22 +39,22 @@
 
                 <div class="sidebar-menu">
                     <ul class="menu">
-                        <li class="sidebar-item {{ setActive('dashboard') }}">
-                            <a href="{{ url('dashboard') }}" class="sidebar-link">
+                        <li class="sidebar-item {{ setActive('admin') }}">
+                            <a href="{{ url('admin') }}" class="sidebar-link">
                                 <i class="d-flex icon-home"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
 
-                        <li class="sidebar-item has-sub {{ setActive('dashboard/user-verification') }}">
+                        <li class="sidebar-item has-sub {{ setActive('admin/user-verification') }}">
                             <a href="#" class="sidebar-link">
                                 <i class="d-flex icon-activity"></i>
                                 <span>Manajemen Usaha</span>
                             </a>
 
                             <ul class="submenu">
-                                <li class="submenu-item {{ setActive('dashboard/user-verification') }}">
-                                    <a href="{{ url('dashboard/user-verification') }}" class="submenu-link">Verifikasi
+                                <li class="submenu-item {{ setActive('admin/user-verification') }}">
+                                    <a href="{{ url('admin/user-verification') }}" class="submenu-link">Verifikasi
                                         Akun Usaha</a>
                                 </li>
 

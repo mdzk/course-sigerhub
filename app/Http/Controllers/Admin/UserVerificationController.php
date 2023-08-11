@@ -33,11 +33,11 @@ class UserVerificationController extends Controller
             'password' => Hash::make($password),
         ]);
 
-        // Mail::to($data['email'])->send(new AccountActived($data, $password));
-        // Http::asForm()->post('http://localhost:9000/send-message', [
-        //     'number' => $data['nohp'],
-        //     'message' => $password,
-        // ]);
-        return redirect()->route('home');
+        Mail::to($data['email'])->send(new AccountActived($data, $password));
+        Http::asForm()->post('http://localhost:9000/send-message', [
+            'number' => $data['nohp'],
+            'message' => $password,
+        ]);
+        return redirect()->route('user-verification');
     }
 }

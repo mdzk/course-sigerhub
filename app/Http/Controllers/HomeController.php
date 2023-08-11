@@ -54,24 +54,11 @@ class HomeController extends Controller
 
     public function home()
     {
-        $users = User::where('status', 'pending')->get();
-        return view('home', compact('users'));
-    }
-
-    public function verify(Request $request, $id): RedirectResponse
-    {
-        $data = User::findOrFail($id);
-        $password = Str::random(8);
-        $data->update([
-            'status' => 'active',
-            'password' => Hash::make($password),
-        ]);
-
-        Mail::to($data['email'])->send(new AccountActived($data, $password));
-        Http::asForm()->post('http://localhost:9000/send-message', [
-            'number' => $data['nohp'],
-            'message' => $password,
-        ]);
-        return redirect()->route('dashboard');
+        if (Auth::user()->roles == 'admin') {
+            return redirect()->route('admin');
+        }
+        if (Auth::user()->roles == 'user') {
+            return redirect()->route('dashboard');
+        }
     }
 }
