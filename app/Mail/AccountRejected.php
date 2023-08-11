@@ -9,18 +9,17 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class AccountActived extends Mailable
+class AccountRejected extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(protected User $user, protected $password)
+    public function __construct(protected User $user)
     {
         //
         $this->user = $user;
-        $this->password = $password;
     }
 
     /**
@@ -29,7 +28,7 @@ class AccountActived extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Akun Berhasil Diaktifkan',
+            subject: 'Akun Ditolak',
         );
     }
 
@@ -39,10 +38,9 @@ class AccountActived extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.account-actived',
+            view: 'mail.account-rejected',
             with: [
                 'user' => $this->user,
-                'password' => $this->password,
             ],
         );
     }

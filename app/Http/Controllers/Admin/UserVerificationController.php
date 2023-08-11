@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Mail\AccountActived;
+use App\Mail\AccountRejected;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -37,6 +38,21 @@ class UserVerificationController extends Controller
         Http::asForm()->post('http://localhost:9000/send-message', [
             'number' => $data['nohp'],
             'message' => $password,
+        ]);
+        return redirect()->route('user-verification');
+    }
+
+    public function reject(Request $request, $id): RedirectResponse
+    {
+        $data = User::findOrFail($id);
+        $data->update([
+            'status' => 'reject',
+        ]);
+
+        Mail::to($data['email'])->send(new AccountRejected($data));
+        Http::asForm()->post('http://localhost:9000/send-message', [
+            'number' => $data['nohp'],
+            'message' => 'Pendaftaran akun anda ditolak',
         ]);
         return redirect()->route('user-verification');
     }
