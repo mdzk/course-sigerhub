@@ -3,7 +3,9 @@
 use App\Http\Controllers\Auth\ChangeDefaultPasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AdminDashboardController;
-use App\Http\Controllers\Admin\UserVerificationController;
+use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\UsersVerificationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,8 +35,15 @@ Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
 Route::middleware('admin')->group(function () {
     Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin');
-    Route::get('/admin/user-verification', [UserVerificationController::class, 'index'])->name('user-verification');
-    Route::post('/admin/verify/{id}', [UserVerificationController::class, 'verify'])->name('verify');
+
+    // Manajemen Usaha Section
+    Route::get('/admin/users', [UsersController::class, 'index'])->name('users');
+    Route::get('/admin/users-verification', [UsersVerificationController::class, 'index'])->name('users-verification');
+    Route::post('/admin/verify/{id}', [UsersVerificationController::class, 'verify'])->name('verify');
+    Route::post('/admin/reject/{id}', [UsersVerificationController::class, 'reject'])->name('reject');
+
+    // Manajemen Kelas Section
+    Route::get('/admin/course', [CourseController::class, 'index'])->name('course');
 });
 
 // Authentication Section

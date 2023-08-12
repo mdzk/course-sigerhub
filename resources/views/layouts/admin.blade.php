@@ -46,33 +46,34 @@
                             </a>
                         </li>
 
-                        <li class="sidebar-item has-sub {{ setActive('admin/user-verification') }}">
+                        <li
+                            class="sidebar-item has-sub {{ setActive('admin/users-verification') }} {{ setActive('admin/users') }}">
                             <a href="#" class="sidebar-link">
                                 <i class="d-flex icon-activity"></i>
                                 <span>Manajemen Usaha</span>
                             </a>
 
                             <ul class="submenu">
-                                <li class="submenu-item {{ setActive('admin/user-verification') }}">
-                                    <a href="{{ url('admin/user-verification') }}" class="submenu-link">Verifikasi
+                                <li class="submenu-item {{ setActive('admin/users-verification') }}">
+                                    <a href="{{ url('admin/users-verification') }}" class="submenu-link">Verifikasi
                                         Akun Usaha</a>
                                 </li>
 
-                                <li class="submenu-item">
-                                    <a href="usaha-daftar.html" class="submenu-link">Daftar Akun Usaha</a>
+                                <li class="submenu-item {{ setActive('admin/users') }}">
+                                    <a href="{{ url('admin/users') }}" class="submenu-link">Daftar Akun Usaha</a>
                                 </li>
                             </ul>
                         </li>
 
-                        <li class="sidebar-item has-sub">
+                        <li class="sidebar-item has-sub {{ setActive('admin/course') }}">
                             <a href="#" class="sidebar-link">
                                 <i class="d-flex icon-clipboard-text"></i>
                                 <span>Manajemen Kelas</span>
                             </a>
 
                             <ul class="submenu">
-                                <li class="submenu-item">
-                                    <a href="kelas-daftar.html" class="submenu-link">Daftar Kelas</a>
+                                <li class="submenu-item {{ setActive('admin/course') }}">
+                                    <a href="{{ url('admin/course') }}" class="submenu-link">Daftar Kelas</a>
                                 </li>
 
                                 <li class="submenu-item">

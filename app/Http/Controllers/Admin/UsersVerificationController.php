@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Str;
 
-class UserVerificationController extends Controller
+class UsersVerificationController extends Controller
 {
     //
     public function index()
@@ -22,7 +22,7 @@ class UserVerificationController extends Controller
             ->where('status', 'pending')
             ->get();
 
-        return view('admin.user-verification', compact('users'));
+        return view('admin.users-verification', compact('users'));
     }
 
     public function verify(Request $request, $id): RedirectResponse
@@ -39,7 +39,7 @@ class UserVerificationController extends Controller
             'number' => $data['nohp'],
             'message' => $password,
         ]);
-        return redirect()->route('user-verification');
+        return redirect()->route('users-verification');
     }
 
     public function reject(Request $request, $id): RedirectResponse
@@ -54,6 +54,6 @@ class UserVerificationController extends Controller
             'number' => $data['nohp'],
             'message' => 'Pendaftaran akun anda ditolak',
         ]);
-        return redirect()->route('user-verification');
+        return redirect()->route('users-verification');
     }
 }

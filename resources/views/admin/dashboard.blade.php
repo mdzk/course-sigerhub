@@ -5,14 +5,12 @@
 @push('styles')
     <link rel="stylesheet" href="{{ url('') }}/assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="{{ url('') }}/assets/scss/pages/datatables.scss">
-    @livewireStyles()
 @endpush
 
 @push('scripts')
     <script src="{{ url('') }}/assets/extensions/jquery/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js"></script>
     <script src="{{ url('') }}/assets/static/js/pages/datatables.js"></script>
-    @livewireScripts()
 @endpush
 
 @section('content')
