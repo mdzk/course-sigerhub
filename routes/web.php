@@ -33,17 +33,17 @@ Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
 
-Route::middleware('admin')->group(function () {
-    Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin');
+Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
+    Route::get('', [AdminDashboardController::class, 'index'])->name('admin');
 
     // Manajemen Usaha Section
-    Route::get('/admin/users', [UsersController::class, 'index'])->name('users');
-    Route::get('/admin/users-verification', [UsersVerificationController::class, 'index'])->name('users-verification');
-    Route::post('/admin/verify/{id}', [UsersVerificationController::class, 'verify'])->name('verify');
-    Route::post('/admin/reject/{id}', [UsersVerificationController::class, 'reject'])->name('reject');
+    Route::get('/users', [UsersController::class, 'index'])->name('users');
+    Route::get('/users-verification', [UsersVerificationController::class, 'index'])->name('users-verification');
+    Route::post('/verify/{id}', [UsersVerificationController::class, 'verify'])->name('verify');
+    Route::post('/reject/{id}', [UsersVerificationController::class, 'reject'])->name('reject');
 
     // Manajemen Kelas Section
-    Route::get('/admin/course', [CourseController::class, 'index'])->name('course');
+    Route::get('/course', [CourseController::class, 'index'])->name('course');
 });
 
 // Authentication Section
