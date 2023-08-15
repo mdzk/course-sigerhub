@@ -112,7 +112,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4>Jumlah kelas aktif</h4>
-                                <a href="#" class="btn btn-primary btn-lg text-white">
+                                <a href="{{ route('course-create') }}" class="btn btn-primary btn-lg text-white">
                                     + Tambah kelas
                                 </a>
                             </div>

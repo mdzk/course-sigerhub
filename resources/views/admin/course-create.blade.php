@@ -19,26 +19,63 @@
                                 <h4>Tambah Kelas</h4>
                             </div>
                             <div class="card-body">
-                                <form action="">
+                                <form method="POST" action="{{ route('course-store') }}" enctype="multipart/form-data">
+                                    @csrf
                                     <h6>Nama Kelas:</h6>
                                     <div class="form-group mb-5">
-                                        <input type="text" class="form-control form-control-xl"
+                                        <input type="text"
+                                            class="form-control form-control-xl @error('title_course') is-invalid @enderror"
                                             placeholder="Kelas Pengembangan ..." name="title_course">
+                                        @error('title_course')
+                                            <div class="invalid-feedback">
+                                                <i class="bx bx-radio-circle"></i>
+                                                {{ $errors->first() }}
+                                            </div>
+                                        @enderror
                                     </div>
+
                                     <h6>Ketegori Kelas:</h6>
                                     <div class="form-group mb-5">
                                         <select name="id_categories" id=""
-                                            class="form-control form-select form-control-xl">
+                                            class="form-control form-select form-control-xl @error('title_course') is-invalid @enderror">
                                             <option value="" selected disabled>Pilih Kategori</option>
-                                            <option value="">Keuangan</option>
-                                            <option value="">Penulisan</option>
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->name_category }}</option>
+                                            @endforeach
                                         </select>
+                                        @error('id_categories')
+                                            <div class="invalid-feedback">
+                                                <i class="bx bx-radio-circle"></i>
+                                                {{ $errors->first() }}
+                                            </div>
+                                        @enderror
                                     </div>
+
                                     <h6>Deskripsi Kelas:</h6>
                                     <div class="form-group mb-5">
-                                        <textarea type="text" rows="5" class="form-control form-control-xl" placeholder="Kelas Pengembangan ..."
-                                            name="title_course"></textarea>
+                                        <textarea type="text" rows="5" class="form-control form-control-xl @error('description') is-invalid @enderror"
+                                            placeholder="Kelas Pengembangan ..." name="description"></textarea>
+                                        @error('description')
+                                            <div class="invalid-feedback">
+                                                <i class="bx bx-radio-circle"></i>
+                                                {{ $errors->first() }}
+                                            </div>
+                                        @enderror
                                     </div>
+
+                                    <h6>Thumbnail:</h6>
+                                    <div class="form-group mb-5">
+                                        <input type="file"
+                                            class="form-control form-control-xl @error('thumbnail') is-invalid @enderror"
+                                            name="thumbnail" accept=".png, .jpg, .jpeg">
+                                        @error('thumbnail')
+                                            <div class="invalid-feedback">
+                                                <i class="bx bx-radio-circle"></i>
+                                                {{ $errors->first() }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
                                     <div class="col-sm-12 d-flex justify-content-end">
                                         <button type="submit" class="btn btn-lg btn-primary me-1 mb-1">
                                             + Tambah Kelas

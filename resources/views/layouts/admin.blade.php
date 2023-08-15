@@ -65,7 +65,8 @@
                             </ul>
                         </li>
 
-                        <li class="sidebar-item has-sub {{ setActive('admin/course') }}">
+                        <li
+                            class="sidebar-item has-sub {{ setActive('admin/course') }} {{ setActive('admin/course/create') }}">
                             <a href="#" class="sidebar-link">
                                 <i class="d-flex icon-clipboard-text"></i>
                                 <span>Manajemen Kelas</span>
@@ -76,8 +77,8 @@
                                     <a href="{{ url('admin/course') }}" class="submenu-link">Daftar Kelas</a>
                                 </li>
 
-                                <li class="submenu-item">
-                                    <a href="kelas-tambah.html" class="submenu-link">Tambah Kelas</a>
+                                <li class="submenu-item {{ setActive('admin/course/create') }}">
+                                    <a href="{{ route('course-create') }}" class="submenu-link">Tambah Kelas</a>
                                 </li>
                             </ul>
                         </li>
@@ -99,19 +100,19 @@
                             </ul>
                         </li>
 
-                        <li class="sidebar-item has-sub">
+                        <li class="sidebar-item has-sub {{ setActive('admin/categories') }} {{ setActive('admin/categories/create') }}">
                             <a href="#" class="sidebar-link">
                                 <i class="d-flex icon-note"></i>
                                 <span>Manajemen Ketegori</span>
                             </a>
 
                             <ul class="submenu">
-                                <li class="submenu-item">
-                                    <a href="kategori-daftar.html" class="submenu-link">Daftar Kategori</a>
+                                <li class="submenu-item {{ setActive('admin/categories') }}">
+                                    <a href="{{ route('categories') }}" class="submenu-link">Daftar Kategori</a>
                                 </li>
 
-                                <li class="submenu-item">
-                                    <a href="kategori-tambah.html" class="submenu-link">Tambah Kategori</a>
+                                <li class="submenu-item {{ setActive('admin/categories/create') }}">
+                                    <a href="{{ route('categories-create') }}" class="submenu-link">Tambah Kategori</a>
                                 </li>
                             </ul>
                         </li>

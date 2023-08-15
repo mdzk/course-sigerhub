@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Categories;
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CourseController extends Controller
 {
@@ -24,7 +26,8 @@ class CourseController extends Controller
     public function create()
     {
         //
-        return view('admin.course-create');
+        $categories = Categories::get();
+        return view('admin.course-create', compact('categories'));
     }
 
     /**
@@ -32,7 +35,31 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'title_course' => 'required|unique:course,title_course',
+            'id_categories' => 'required',
+            'description' => 'required',
+            'thumbnail' => 'required|image|mimes:jpeg,jpg,png',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $image = $request->file('thumbnail');
+        $image->storeAs('public/thumbnail', $image->hashName());
+
+        Course::create([
+            'title_course'   => $request->title_course,
+            'id_categories'   => $request->id_categories,
+            'description'   => $request->description,
+            'thumbnail' => $image->hashName(),
+        ]);
+
+        return redirect()->route('course')->with('message', 'Data berhasil disimpan!');
     }
 
     /**
