@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\VideosController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\UsersVerificationController;
 use Illuminate\Support\Facades\Route;

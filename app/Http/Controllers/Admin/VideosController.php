@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Course;
+use App\Models\Videos;
 use Illuminate\Http\Request;
 
 class VideosController extends Controller
@@ -12,7 +14,11 @@ class VideosController extends Controller
      */
     public function index()
     {
-        //
+        $videos = Videos::select('videos.id', 'title_videos', 'iframe', 'title_course')
+            ->join('course', 'course.id', '=', 'videos.id_course')
+            ->get();
+
+        return view('admin.videos', compact('videos'));
     }
 
     /**
@@ -21,6 +27,8 @@ class VideosController extends Controller
     public function create()
     {
         //
+        $courses = Course::get();
+        return view('admin.videos-create', compact('courses'));
     }
 
     /**
