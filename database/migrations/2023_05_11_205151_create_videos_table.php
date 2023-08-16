@@ -16,9 +16,7 @@ return new class extends Migration
             $table->string('title_videos');
             $table->string('iframe');
             $table->unsignedBigInteger('id_course');
-            $table->unsignedBigInteger('id_users');
             $table->foreign('id_course')->references('id')->on('course');
-            $table->foreign('id_users')->references('id')->on('users');
             $table->timestamps();
         });
     }

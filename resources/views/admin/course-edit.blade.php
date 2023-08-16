@@ -16,14 +16,15 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Tambah Kelas</h4>
+                                <h4>Edit Kelas</h4>
                             </div>
                             <div class="card-body">
-                                <form method="POST" action="{{ route('course-store') }}" enctype="multipart/form-data">
+                                <form method="POST" action="{{ route('course-update', $course->id) }}"
+                                    enctype="multipart/form-data">
                                     @csrf
                                     <h6>Nama Kelas:</h6>
                                     <div class="form-group mb-5">
-                                        <input type="text" value="{{ old('title_course') }}"
+                                        <input type="text" value="{{ old('title_course', $course->title_course) }}"
                                             class="form-control form-control-xl @error('title_course') is-invalid @enderror"
                                             placeholder="Kelas Pengembangan ..." name="title_course">
                                         @error('title_course')
@@ -38,9 +39,10 @@
                                     <div class="form-group mb-5">
                                         <select name="id_categories" id=""
                                             class="form-control form-select form-control-xl @error('title_course') is-invalid @enderror">
-                                            <option value="" selected disabled>Pilih Kategori</option>
                                             @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}">{{ $category->name_category }}</option>
+                                                <option value="{{ $category->id }}"
+                                                    @if ($category->id == $course->id_categories) selected @endif>
+                                                    {{ $category->name_category }}</option>
                                             @endforeach
                                         </select>
                                         @error('id_categories')
@@ -54,7 +56,7 @@
                                     <h6>Deskripsi Kelas:</h6>
                                     <div class="form-group mb-5">
                                         <textarea type="text" rows="5" class="form-control form-control-xl @error('description') is-invalid @enderror"
-                                            placeholder="Kelas Pengembangan ..." name="description">{{ old('description') }}</textarea>
+                                            placeholder="Kelas Pengembangan ..." name="description">{{ old('description', $course->description) }}</textarea>
                                         @error('description')
                                             <div class="invalid-feedback">
                                                 <i class="bx bx-radio-circle"></i>
@@ -74,6 +76,7 @@
                                                 {{ $message }}
                                             </div>
                                         @enderror
+                                        <span>* Kosongkan jika tidak ingin mengganti thumbnail</span>
                                     </div>
 
                                     <div class="col-sm-12 d-flex justify-content-end">

@@ -46,6 +46,17 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/course', [CourseController::class, 'index'])->name('course');
     Route::get('/course/create', [CourseController::class, 'create'])->name('course-create');
     Route::post('/course/store', [CourseController::class, 'store'])->name('course-store');
+    Route::get('/course/edit/{id}', [CourseController::class, 'edit'])->name('course-edit');
+    Route::post('/course/update/{id}', [CourseController::class, 'update'])->name('course-update');
+    Route::post('/course/destroy/{id}', [CourseController::class, 'destroy'])->name('course-destroy');
+
+    // Manajemen Video Section
+    Route::get('/video', [VideosController::class, 'index'])->name('video');
+    Route::get('/video/create', [VideosController::class, 'create'])->name('video-create');
+    Route::post('/video/store', [VideosController::class, 'store'])->name('video-store');
+    Route::get('/video/edit/{id}', [VideosController::class, 'edit'])->name('video-edit');
+    Route::post('/video/update/{id}', [VideosController::class, 'update'])->name('video-update');
+    Route::post('/video/destroy/{id}', [VideosController::class, 'destroy'])->name('video-destroy');
 
     // Manajemen Kategori Section
     Route::get('/categories', [CategoriesController::class, 'index'])->name('categories');
@@ -54,6 +65,10 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/categories/edit/{id}', [CategoriesController::class, 'edit'])->name('categories-edit');
     Route::post('/categories/update/{id}', [CategoriesController::class, 'update'])->name('categories-update');
     Route::post('/categories/destroy/{id}', [CategoriesController::class, 'destroy'])->name('categories-destroy');
+});
+
+Route::prefix('dashboard')->middleware(['auth', 'user'])->group(function () {
+    Route::get('', [AdminDashboardController::class, 'index'])->name('dashboard');
 });
 
 // Authentication Section

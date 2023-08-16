@@ -33,9 +33,9 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Daftar Kelas</h4>
-                                <a href="{{ route('course-create') }}" class="btn btn-primary btn-lg text-white">
-                                    + Tambah kelas
+                                <h4>Daftar Video</h4>
+                                <a href="{{ route('video-create') }}" class="btn btn-primary btn-lg text-white">
+                                    + Tambah Video
                                 </a>
                             </div>
                             <div class="card-body">
@@ -43,9 +43,9 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
+                                            <th>Nama Video</th>
                                             <th>Nama Kelas</th>
-                                            <th>Ketegori</th>
-                                            <th>Deskripsi</th>
+                                            <th>Tautan Video</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -53,25 +53,25 @@
                                         @php
                                             $i = 1;
                                         @endphp
-                                        @forelse ($courses as $course)
+                                        @forelse ($videos as $video)
                                             <tr>
                                                 <td>{{ $i++ }}</td>
-                                                <td>{{ $course->title_course }}</td>
-                                                <td>{{ $course->name_category }}</td>
-                                                <td>{{ $course->description }}</td>
+                                                <td>{{ $video->title_videos }}</td>
+                                                <td>{{ $video->title_course }}</td>
+                                                <td>{{ $video->iframe }}</td>
                                                 <td>
-                                                    <a type="button" href="{{ url('admin/course/edit/' . $course->id) }}"
+                                                    <a type="button" href="{{ url('admin/course/edit/' . $video->id) }}"
                                                         class="btn btn-info text-white">
                                                         <i class="icon-edit"></i> Edit
                                                     </a>
                                                     <button type="button" class="btn btn-danger text-white"
-                                                        data-bs-toggle="modal" data-bs-target="#hapus{{ $course->id }}">
+                                                        data-bs-toggle="modal" data-bs-target="#hapus{{ $video->id }}">
                                                         <i class="icon-trash"></i> Hapus
                                                     </button>
 
                                                     <!--Delete Modal Content -->
                                                     <div class="modal fade text-left modal-borderless"
-                                                        id="hapus{{ $course->id }}" tabindex="-1" role="dialog"
+                                                        id="hapus{{ $video->id }}" tabindex="-1" role="dialog"
                                                         aria-labelledby="myModalLabel1" aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-scrollable" role="document">
                                                             <div class="modal-content">
@@ -85,7 +85,7 @@
 
                                                                 <div class="modal-body">
                                                                     <p>
-                                                                        Apakah anda yakin ingin hapus kelas ini?
+                                                                        Apakah anda yakin ingin video kelas ini?
                                                                     </p>
                                                                 </div>
                                                                 <div class="modal-footer">
@@ -96,7 +96,7 @@
                                                                         <span class="d-sm-block">Tidak</span>
                                                                     </button>
                                                                     <form method="POST"
-                                                                        action="{{ route('course-destroy', $course->id) }}">
+                                                                        action="{{ route('course-destroy', $video->id) }}">
                                                                         @csrf
                                                                         <button name="submit" type="submit"
                                                                             class="btn btn-primary" data-bs-dismiss="modal">

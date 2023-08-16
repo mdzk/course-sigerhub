@@ -83,20 +83,19 @@
                             </ul>
                         </li>
 
-                        <li
-                            class="sidebar-item has-sub {{ setActive('admin/video') }} {{ setActive('admin/video/create') }}">
+                        <li class="sidebar-item has-sub">
                             <a href="#" class="sidebar-link">
                                 <i class="d-flex icon-video-circle"></i>
                                 <span>Manajemen Video</span>
                             </a>
 
                             <ul class="submenu">
-                                <li class="submenu-item {{ setActive('admin/video') }}">
-                                    <a href="{{ route('video') }}" class="submenu-link">Daftar Video</a>
+                                <li class="submenu-item">
+                                    <a href="video-daftar.html" class="submenu-link">Daftar Video</a>
                                 </li>
 
-                                <li class="submenu-item {{ setActive('admin/video/create') }}">
-                                    <a href="{{ route('video-create') }}" class="submenu-link">Tambah Video</a>
+                                <li class="submenu-item">
+                                    <a href="video-tambah.html" class="submenu-link">Tambah Video</a>
                                 </li>
                             </ul>
                         </li>
