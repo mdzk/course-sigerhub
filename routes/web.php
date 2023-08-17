@@ -66,6 +66,14 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/categories/edit/{id}', [CategoriesController::class, 'edit'])->name('categories-edit');
     Route::post('/categories/update/{id}', [CategoriesController::class, 'update'])->name('categories-update');
     Route::post('/categories/destroy/{id}', [CategoriesController::class, 'destroy'])->name('categories-destroy');
+
+    // Manajemen Event Section
+    Route::get('/event', [EventsController::class, 'index'])->name('events');
+    Route::get('/event/create', [EventsController::class, 'create'])->name('events-create');
+    Route::post('/event/store', [EventsController::class, 'store'])->name('events-store');
+    Route::get('/event/edit/{id}', [EventsController::class, 'edit'])->name('events-edit');
+    Route::post('/event/update/{id}', [EventsController::class, 'update'])->name('events-update');
+    Route::post('/event/destroy/{id}', [EventsController::class, 'destroy'])->name('events-destroy');
 });
 
 Route::prefix('dashboard')->middleware(['auth', 'user'])->group(function () {

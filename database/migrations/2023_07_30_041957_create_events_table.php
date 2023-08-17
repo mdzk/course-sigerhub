@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('date');
             $table->string('time');
             $table->string('location');
+            $table->string('link');
             $table->enum('tipe', ['online', 'offline']);
             $table->timestamps();
         });

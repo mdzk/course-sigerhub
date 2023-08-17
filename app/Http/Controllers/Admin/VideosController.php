@@ -72,7 +72,10 @@ class VideosController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $video = Videos::findOrFail($id);
+        $courses = Course::get();
+
+        return view('admin.videos-edit', compact('courses', 'video'));
     }
 
     /**
@@ -80,7 +83,27 @@ class VideosController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $video = Videos::findOrFail($id);
+        $validator = Validator::make($request->all(), [
+            'title_videos' => 'required',
+            'id_course' => 'required',
+            'iframe' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $video->update([
+            'title_videos'   => $request->title_videos,
+            'iframe'   => $request->iframe,
+            'id_course'   => $request->id_course,
+        ]);
+
+        return redirect()->route('video')->with('message', 'Data berhasil disimpan!');
     }
 
     /**
@@ -88,6 +111,8 @@ class VideosController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $video = Videos::findOrFail($id);
+        $video->delete();
+        return redirect()->route('video')->with('message', 'Data berhasil dihapus!');
     }
 }

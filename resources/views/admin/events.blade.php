@@ -33,9 +33,9 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Daftar Video</h4>
-                                <a href="{{ route('video-create') }}" class="btn btn-primary btn-lg text-white">
-                                    + Tambah Video
+                                <h4>Daftar Event</h4>
+                                <a href="{{ route('event-create') }}" class="btn btn-primary btn-lg text-white">
+                                    + Tambah Event
                                 </a>
                             </div>
                             <div class="card-body">
@@ -43,9 +43,11 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama Video</th>
-                                            <th>Nama Kelas</th>
-                                            <th>Tautan Video</th>
+                                            <th>Nama Event</th>
+                                            <th>Tanggal</th>
+                                            <th>Waktu</th>
+                                            <th>Tempat</th>
+                                            <th>Deskripsi</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -53,25 +55,28 @@
                                         @php
                                             $i = 1;
                                         @endphp
-                                        @forelse ($videos as $video)
+                                        @forelse ($events as $event)
                                             <tr>
                                                 <td>{{ $i++ }}</td>
-                                                <td>{{ $video->title_videos }}</td>
-                                                <td>{{ $video->title_course }}</td>
-                                                <td>{{ $video->iframe }}</td>
+                                                <td>{{ $event->title_event }}</td>
+                                                <td>{{ $event->date }}</td>
+                                                <td>{{ $event->time }}</td>
+                                                <td>{{ $event->location }}</td>
+                                                <td>{{ $event->tipe }}</td>
+                                                <td>{{ $event->iframe }}</td>
                                                 <td>
-                                                    <a type="button" href="{{ url('admin/video/edit/' . $video->id) }}"
+                                                    <a type="button" href="{{ url('admin/video/edit/' . $event->id) }}"
                                                         class="btn btn-info text-white">
                                                         <i class="icon-edit"></i> Edit
                                                     </a>
                                                     <button type="button" class="btn btn-danger text-white"
-                                                        data-bs-toggle="modal" data-bs-target="#hapus{{ $video->id }}">
+                                                        data-bs-toggle="modal" data-bs-target="#hapus{{ $event->id }}">
                                                         <i class="icon-trash"></i> Hapus
                                                     </button>
 
                                                     <!--Delete Modal Content -->
                                                     <div class="modal fade text-left modal-borderless"
-                                                        id="hapus{{ $video->id }}" tabindex="-1" role="dialog"
+                                                        id="hapus{{ $event->id }}" tabindex="-1" role="dialog"
                                                         aria-labelledby="myModalLabel1" aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-scrollable" role="document">
                                                             <div class="modal-content">
@@ -96,7 +101,7 @@
                                                                         <span class="d-sm-block">Tidak</span>
                                                                     </button>
                                                                     <form method="POST"
-                                                                        action="{{ route('video-destroy', $video->id) }}">
+                                                                        action="{{ route('video-destroy', $event->id) }}">
                                                                         @csrf
                                                                         <button name="submit" type="submit"
                                                                             class="btn btn-primary" data-bs-dismiss="modal">
