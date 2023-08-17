@@ -23,10 +23,10 @@
                                     @csrf
                                     <h6>Nama Video:</h6>
                                     <div class="form-group mb-5">
-                                        <input type="text" value="{{ old('title_course') }}"
-                                            class="form-control form-control-xl @error('title_course') is-invalid @enderror"
-                                            placeholder="Pengantar" name="title_course">
-                                        @error('title_course')
+                                        <input type="text" value="{{ old('title_videos') }}"
+                                            class="form-control form-control-xl @error('title_videos') is-invalid @enderror"
+                                            placeholder="Pengantar" name="title_videos">
+                                        @error('title_videos')
                                             <div class="invalid-feedback">
                                                 <i class="bx bx-radio-circle"></i>
                                                 {{ $message }}
@@ -54,7 +54,7 @@
                                     <h6>Tautan Video:</h6>
                                     <div class="form-group mb-5">
                                         <textarea type="text" rows="5" class="form-control form-control-xl @error('iframe') is-invalid @enderror"
-                                            placeholder="https://youtube.com/..." name="description">{{ old('iframe') }}</textarea>
+                                            placeholder="https://youtube.com/..." name="iframe">{{ old('iframe') }}</textarea>
                                         @error('iframe')
                                             <div class="invalid-feedback">
                                                 <i class="bx bx-radio-circle"></i>

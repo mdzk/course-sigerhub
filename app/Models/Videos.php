@@ -13,6 +13,5 @@ class Videos extends Model
         'title_videos',
         'iframe',
         'id_course',
-        'id_users'
     ];
 }

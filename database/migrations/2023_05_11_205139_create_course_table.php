@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('course', function (Blueprint $table) {
             $table->id();
             $table->string('title_course');
-            $table->string('description');
+            $table->text('description');
             $table->unsignedBigInteger('id_categories');
             $table->foreign('id_categories')->references('id')->on('categories');
             $table->string('thumbnail');

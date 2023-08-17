@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Videos;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class VideosController extends Controller
 {
@@ -36,7 +37,26 @@ class VideosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'title_videos' => 'required',
+            'id_course' => 'required',
+            'iframe' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        Videos::create([
+            'title_videos'   => $request->title_videos,
+            'iframe'   => $request->iframe,
+            'id_course'   => $request->id_course,
+        ]);
+
+        return redirect()->route('video')->with('message', 'Data berhasil disimpan!');
     }
 
     /**
