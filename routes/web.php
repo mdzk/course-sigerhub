@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\VideosController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\EventsController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UsersVerificationController;
 use Illuminate\Support\Facades\Route;
 
@@ -68,12 +70,17 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::post('/categories/destroy/{id}', [CategoriesController::class, 'destroy'])->name('categories-destroy');
 
     // Manajemen Event Section
-    Route::get('/event', [EventsController::class, 'index'])->name('events');
-    Route::get('/event/create', [EventsController::class, 'create'])->name('events-create');
-    Route::post('/event/store', [EventsController::class, 'store'])->name('events-store');
-    Route::get('/event/edit/{id}', [EventsController::class, 'edit'])->name('events-edit');
-    Route::post('/event/update/{id}', [EventsController::class, 'update'])->name('events-update');
-    Route::post('/event/destroy/{id}', [EventsController::class, 'destroy'])->name('events-destroy');
+    Route::get('/event', [EventsController::class, 'index'])->name('event');
+    Route::get('/event/create', [EventsController::class, 'create'])->name('event-create');
+    Route::post('/event/store', [EventsController::class, 'store'])->name('event-store');
+    Route::get('/event/edit/{id}', [EventsController::class, 'edit'])->name('event-edit');
+    Route::post('/event/update/{id}', [EventsController::class, 'update'])->name('event-update');
+    Route::post('/event/destroy/{id}', [EventsController::class, 'destroy'])->name('event-destroy');
+
+    // Manajemen Setting Section
+    Route::get('/setting', [SettingController::class, 'index'])->name('setting');
+    Route::get('/setting/edit', [SettingController::class, 'edit'])->name('setting-edit');
+    Route::post('/setting/update', [SettingController::class, 'update'])->name('setting-update');
 });
 
 Route::prefix('dashboard')->middleware(['auth', 'user'])->group(function () {

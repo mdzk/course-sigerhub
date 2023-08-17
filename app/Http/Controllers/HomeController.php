@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\AccountActived;
+use App\Models\Events;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -32,7 +33,11 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('home.homepage');
+        $events = Events::orderBy('date', 'desc')
+            ->limit(5)
+            ->get();
+
+        return view('home.homepage', compact('events'));
     }
     public function class()
     {

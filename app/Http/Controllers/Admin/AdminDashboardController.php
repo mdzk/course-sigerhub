@@ -28,10 +28,12 @@ class AdminDashboardController extends Controller
 
         $users = User::where('roles', 'user')
             ->where('status', 'active')
+            ->orderBy('created_at', 'desc')
             ->limit(5)
             ->get();
 
         $courses = Course::join('categories', 'course.id_categories', 'categories.id')
+            ->orderBy('course.created_at', 'desc')
             ->limit(5)
             ->get();
 

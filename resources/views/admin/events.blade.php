@@ -47,7 +47,8 @@
                                             <th>Tanggal</th>
                                             <th>Waktu</th>
                                             <th>Tempat</th>
-                                            <th>Deskripsi</th>
+                                            <th>Tipe</th>
+                                            <th>Link</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -63,9 +64,9 @@
                                                 <td>{{ $event->time }}</td>
                                                 <td>{{ $event->location }}</td>
                                                 <td>{{ $event->tipe }}</td>
-                                                <td>{{ $event->iframe }}</td>
+                                                <td>{{ $event->link }}</td>
                                                 <td>
-                                                    <a type="button" href="{{ url('admin/video/edit/' . $event->id) }}"
+                                                    <a type="button" href="{{ url('admin/event/edit/' . $event->id) }}"
                                                         class="btn btn-info text-white">
                                                         <i class="icon-edit"></i> Edit
                                                     </a>
@@ -90,7 +91,7 @@
 
                                                                 <div class="modal-body">
                                                                     <p>
-                                                                        Apakah anda yakin ingin hapus video ini?
+                                                                        Apakah anda yakin ingin hapus event ini?
                                                                     </p>
                                                                 </div>
                                                                 <div class="modal-footer">
@@ -101,7 +102,7 @@
                                                                         <span class="d-sm-block">Tidak</span>
                                                                     </button>
                                                                     <form method="POST"
-                                                                        action="{{ route('video-destroy', $event->id) }}">
+                                                                        action="{{ route('event-destroy', $event->id) }}">
                                                                         @csrf
                                                                         <button name="submit" type="submit"
                                                                             class="btn btn-primary" data-bs-dismiss="modal">

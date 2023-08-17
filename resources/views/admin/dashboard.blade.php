@@ -53,7 +53,8 @@
                             <div class="card-body py-4 px-4">
                                 <div class="d-flex align-items-center">
                                     <div class="avatar avatar-xl border border-4 border-primary">
-                                        <img src="{{ url('') }}/assets/static/images/faces/{{ Auth::user()->image }}"
+                                        <img style="object-fit: cover"
+                                            src="@if (Auth::user()->image == 'default.png') {{ url('assets/static/images/faces/1.jpg') }} @else {{ asset('storage/profile/' . Auth::user()->image) }} @endif"
                                             alt="Face 1">
                                     </div>
                                     <div class="ms-3 name">
@@ -134,16 +135,59 @@
                                         @forelse ($courses as $course)
                                             <tr>
                                                 <td>{{ $i++ }}</td>
-                                                <td>{{ $course->titile_course }}</td>
+                                                <td>{{ $course->title_course }}</td>
                                                 <td>{{ $course->name_category }}</td>
                                                 <td>{{ Str::limit($course->description, 20) }}</td>
                                                 <td>
-                                                    <button type="button" class="btn btn-info text-white">
+                                                    <a type="button" href="{{ url('admin/course/edit/' . $course->id) }}"
+                                                        class="btn btn-info text-white">
                                                         <i class="icon-edit"></i> Edit
-                                                    </button>
-                                                    <button type="button" class="btn btn-danger text-white">
+                                                    </a>
+                                                    <button type="button" class="btn btn-danger text-white"
+                                                        data-bs-toggle="modal" data-bs-target="#hapus{{ $course->id }}">
                                                         <i class="icon-trash"></i> Hapus
                                                     </button>
+
+                                                    <!--Delete Modal Content -->
+                                                    <div class="modal fade text-left modal-borderless"
+                                                        id="hapus{{ $course->id }}" tabindex="-1" role="dialog"
+                                                        aria-labelledby="myModalLabel1" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">Peringatan</h5>
+                                                                    <button type="button" class="close rounded-pill"
+                                                                        data-bs-dismiss="modal" aria-label="Close">
+                                                                        <i data-feather="x"></i>
+                                                                    </button>
+                                                                </div>
+
+                                                                <div class="modal-body">
+                                                                    <p>
+                                                                        Apakah anda yakin ingin hapus kelas ini?
+                                                                    </p>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button"
+                                                                        class="btn btn-light-primary ml-1"
+                                                                        data-bs-dismiss="modal">
+
+                                                                        <span class="d-sm-block">Tidak</span>
+                                                                    </button>
+                                                                    <form method="POST"
+                                                                        action="{{ route('course-destroy', $course->id) }}">
+                                                                        @csrf
+                                                                        <button name="submit" type="submit"
+                                                                            class="btn btn-primary" data-bs-dismiss="modal">
+                                                                            <span class="d-sm-block">Ya</span>
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--Delete Modal Content End-->
                                                 </td>
                                             </tr>
                                         @empty

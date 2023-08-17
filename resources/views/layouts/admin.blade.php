@@ -119,25 +119,27 @@
                             </ul>
                         </li>
 
-                        <li class="sidebar-item has-sub">
+                        <li
+                            class="sidebar-item has-sub {{ setActive('admin/event') }} {{ setActive('admin/event/create') }}">
                             <a href="#" class="sidebar-link">
                                 <i class="d-flex icon-calendar-2"></i>
                                 <span>Manajemen Event</span>
                             </a>
 
                             <ul class="submenu">
-                                <li class="submenu-item">
-                                    <a href="event-daftar.html" class="submenu-link">Daftar Event</a>
+                                <li class="submenu-item {{ setActive('admin/event') }}">
+                                    <a href="{{ route('event') }}" class="submenu-link">Daftar Event</a>
                                 </li>
 
-                                <li class="submenu-item">
-                                    <a href="event-tambah.html" class="submenu-link">Tambah Event</a>
+                                <li class="submenu-item {{ setActive('admin/event/create') }}">
+                                    <a href="{{ route('event-create') }}" class="submenu-link">Tambah Event</a>
                                 </li>
                             </ul>
                         </li>
 
-                        <li class="sidebar-item">
-                            <a href="pengaturan.html" class="sidebar-link">
+                        <li
+                            class="sidebar-item {{ setActive('admin/setting') }} {{ setActive('admin/setting/edit') }}">
+                            <a href="{{ route('setting') }}" class="sidebar-link">
                                 <i class="d-flex icon-setting-2"></i>
                                 <span>Pengaturan</span>
                             </a>

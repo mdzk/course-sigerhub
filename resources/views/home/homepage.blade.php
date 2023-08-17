@@ -252,99 +252,38 @@
                         & entrepreneur</p>
                 </div>
                 <div class="col-md-12 mt-5">
-                    <div class="row d-flex flex-wrap justify-content-between">
-                        <div class="col-md-4 p-2">
-                            <div class="shadow-lg card mb-0 p-4">
-                                <img class="img-fluid rounded mb-4" src="assets/static/images/samples/building.jpg"
-                                    alt="">
-                                <div class="col-auto">
-                                    <div class="d-flex align-items-center mb-4">
-                                        <i class="icon-lamp-on text-primary d-flex fs-4"></i>
-                                        <span class="ms-3 mt-1 text-black fw-bold" href="">Membangun bisnis mulai
-                                            dari 0
-                                            bersama
-                                            Jonathan Patterson</span>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col-md-6 d-flex align-items-center">
-                                            <i class="icon-calendar-2 fs-4 text-warning d-flex"></i>
-                                            <span class="ms-3">04 Juli 2023</span>
+                    <div class="row d-flex flex-wrap justify-content-center">
+                        @foreach ($events as $event)
+                            <div class="col-md-4 p-2">
+                                <div class="shadow-lg card mb-0 p-4">
+                                    <img style="object-fit: cover;height: 350px;" class="img-fluid rounded mb-4"
+                                        src="{{ asset('storage/event/' . $event->picture) }}" alt="">
+                                    <div class="col-auto">
+                                        <div class="d-flex align-items-center mb-4">
+                                            <i class="icon-lamp-on text-primary d-flex fs-4"></i>
+                                            <span class="ms-3 mt-1 text-black fw-bold"
+                                                href="">{{ $event->title_event }}</span>
                                         </div>
-                                        <div class="col-md-6 d-flex align-items-center">
-                                            <i class="icon-clock fs-4 text-warning d-flex"></i>
-                                            <span class="ms-3">09.00 WIB</span>
+                                        <div class="row mb-3">
+                                            <div class="col-md-6 d-flex align-items-center">
+                                                <i class="icon-calendar-2 fs-4 text-warning d-flex"></i>
+                                                <span class="ms-3">{{ date('d M y', strtotime($event->date)) }}</span>
+                                            </div>
+                                            <div class="col-md-6 d-flex align-items-center">
+                                                <i class="icon-clock fs-4 text-warning d-flex"></i>
+                                                <span class="ms-3">{{ $event->time }}</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12 d-flex align-items-center">
-                                            <i class="icon-location fs-4 text-warning d-flex"></i>
-                                            <span class="ms-3">Aula Koma Space Lantai 2</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 p-2">
-                            <div class="shadow-lg card mb-0 p-4">
-                                <img class="img-fluid rounded mb-4" src="assets/static/images/samples/architecture1.jpg"
-                                    alt="">
-                                <div class="col-auto">
-                                    <div class="d-flex align-items-center mb-4">
-                                        <i class="icon-lamp-on text-primary d-flex fs-4"></i>
-                                        <span class="ms-3 mt-1 text-black fw-bold" href="">#Bincang antara
-                                            Kebutuhan bisnis
-                                            & Revolusi Industri</span>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col-md-6 d-flex align-items-center">
-                                            <i class="icon-calendar-2 fs-4 text-warning d-flex"></i>
-                                            <span class="ms-3">04 Juli 2023</span>
-                                        </div>
-                                        <div class="col-md-6 d-flex align-items-center">
-                                            <i class="icon-clock fs-4 text-warning d-flex"></i>
-                                            <span class="ms-3">09.00 WIB</span>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12 d-flex align-items-center">
-                                            <i class="icon-location fs-4 text-warning d-flex"></i>
-                                            <span class="ms-3">Aula Koma Space Lantai 2</span>
+                                        <div class="row">
+                                            <div class="col-md-12 d-flex align-items-center">
+                                                <i class="icon-location fs-4 text-warning d-flex"></i>
+                                                <span class="ms-3">{{ $event->location }}</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-4 p-2">
-                            <div class="shadow-lg card mb-0 p-4">
-                                <img class="img-fluid rounded mb-4" src="assets/static/images/samples/building.jpg"
-                                    alt="">
-                                <div class="col-auto">
-                                    <div class="d-flex align-items-center mb-4">
-                                        <i class="icon-lamp-on text-primary d-flex fs-4"></i>
-                                        <span class="ms-3 mt-1 text-black fw-bold" href="">Membangun bisnis mulai
-                                            dari 0
-                                            bersama
-                                            Jonathan Patterson</span>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col-md-6 d-flex align-items-center">
-                                            <i class="icon-calendar-2 fs-4 text-warning d-flex"></i>
-                                            <span class="ms-3">04 Juli 2023</span>
-                                        </div>
-                                        <div class="col-md-6 d-flex align-items-center">
-                                            <i class="icon-clock fs-4 text-warning d-flex"></i>
-                                            <span class="ms-3">09.00 WIB</span>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12 d-flex align-items-center">
-                                            <i class="icon-location fs-4 text-warning d-flex"></i>
-                                            <span class="ms-3">Aula Koma Space Lantai 2</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
