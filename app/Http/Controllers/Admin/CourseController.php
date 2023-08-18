@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Categories;
 use App\Models\Course;
+use App\Models\Videos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -133,6 +134,7 @@ class CourseController extends Controller
     public function destroy(string $id)
     {
         $course = Course::findOrFail($id);
+        Videos::where('id_course', $id)->delete();
         Storage::delete('public/thumbnail/' . $course->thumbnail);
         $course->delete();
         return redirect()->route('course')->with('message', 'Data berhasil dihapus!');
