@@ -9,6 +9,7 @@ use App\Models\Videos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 class CourseController extends Controller
@@ -59,6 +60,7 @@ class CourseController extends Controller
 
         Course::create([
             'title_course'   => $request->title_course,
+            'slug' => Str::of($request->title_course)->slug('-'),
             'id_categories'   => $request->id_categories,
             'description'   => $request->description,
             'thumbnail' => $image->hashName(),
@@ -114,6 +116,7 @@ class CourseController extends Controller
             Storage::delete('public/thumbnail/' . $course->thumbnail);
             $course->update([
                 'title_course'     => $request->title_course,
+                'slug' => Str::of($request->title_course)->slug('-'),
                 'id_categories'   => $request->id_categories,
                 'description'   => $request->description,
                 'thumbnail'     => $image->hashName(),
@@ -121,6 +124,7 @@ class CourseController extends Controller
         } else {
             $course->update([
                 'title_course'     => $request->title_course,
+                'slug' => Str::of($request->title_course)->slug('-'),
                 'id_categories'   => $request->id_categories,
                 'description'   => $request->description,
             ]);

@@ -46,22 +46,11 @@
                             <a class="btn me-3 p-3 mb-3 btn-lg btn-primary">
                                 Semua Kategori
                             </a>
-                            <a class="btn me-3 p-3 mb-3 btn-lg btn-secondary">
-                                Pengembangan Produk
-                            </a>
-                            <a class="btn me-3 p-3 mb-3 btn-lg btn-secondary">
-                                Pengembangan Produk </a><a class="btn me-3 p-3 mb-3 btn-lg btn-secondary">
-                                Pengembangan Produk </a><a class="btn me-3 p-3 mb-3 btn-lg btn-secondary">
-                                Pengembangan Produk </a><a class="btn me-3 p-3 mb-3 btn-lg btn-secondary">
-                                Pengembangan Produk </a><a class="btn me-3 p-3 mb-3 btn-lg btn-secondary">
-                                Pengembangan Produk </a><a class="btn me-3 p-3 mb-3 btn-lg btn-secondary">
-                                Pengembangan Produk </a><a class="btn me-3 p-3 mb-3 btn-lg btn-secondary">
-                                Pengembangan Produk </a><a class="btn me-3 p-3 mb-3 btn-lg btn-secondary">
-                                Pengembangan Produk </a><a class="btn me-3 p-3 mb-3 btn-lg btn-secondary">
-                                Pengembangan Produk </a><a class="btn me-3 p-3 mb-3 btn-lg btn-secondary">
-                                Pengembangan Produk </a><a class="btn me-3 p-3 mb-3 btn-lg btn-secondary">
-                                Pengembangan Produk
-                            </a>
+                            @foreach ($categories as $category)
+                                <a class="btn me-3 p-3 mb-3 btn-lg btn-secondary">
+                                    {{ $category->name_category }}
+                                </a>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -92,102 +81,33 @@
         <div class="container">
             <div class="page-content row py-5">
                 <div class="row d-flex flex-wrap justify-content-evenly">
-                    <div class="col-md-4 p-2">
-                        <div class="card border mb-5 p-4">
-                            <div class="position-relative">
-                                <img class="img-fluid rounded mb-4" src="./assets/compiled/jpg/building.jpg"
-                                    alt="" />
-                                <div class="badge p-2 fw-normal position-absolute class-category">
-                                    Hello
-                                </div>
-                            </div>
-
-                            <div class="col-auto">
-                                <div class="d-flex align-items-center mb-4">
-                                    <span class="mt-1 text-black fw-bold" href="">Kelas Inkubasi Bisnis</span>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-12">
-                                        <span>Kelas ini dibangun untuk para UMKM dan koperasi dalam
-                                            mengembangkan bisnis...</span>
+                    @foreach ($courses as $course)
+                        <div class="col-md-4 p-2">
+                            <div class="card border mb-5 p-4">
+                                <div class="position-relative">
+                                    <img style="object-fit: cover;height: 350px; width: 100%" class="img-fluid rounded mb-4"
+                                        src="{{ asset('storage/thumbnail/' . $course->thumbnail) }}" alt="" />
+                                    <div class="badge p-2 fw-normal position-absolute class-category">
+                                        {{ $course->name_category }}
                                     </div>
                                 </div>
-                                <a href="" class="btn btn-lg btn-primary d-block">Segera Belajar!</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 p-2">
-                        <div class="card border mb-5 p-4">
-                            <div class="position-relative">
-                                <img class="img-fluid rounded mb-4" src="./assets/compiled/jpg/building.jpg"
-                                    alt="" />
-                                <div class="badge p-2 fw-normal position-absolute class-category">
-                                    Hello
-                                </div>
-                            </div>
 
-                            <div class="col-auto">
-                                <div class="d-flex align-items-center mb-4">
-                                    <span class="mt-1 text-black fw-bold" href="">Kelas Inkubasi Bisnis</span>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-12">
-                                        <span>Kelas ini dibangun untuk para UMKM dan koperasi dalam
-                                            mengembangkan bisnis...</span>
+                                <div class="col-auto">
+                                    <div class="d-flex align-items-center mb-4">
+                                        <span class="mt-1 text-black fw-bold"
+                                            href="">{{ $course->title_course }}</span>
                                     </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-12">
+                                            <span>{!! Str::limit($course->description, 75) !!}</span>
+                                        </div>
+                                    </div>
+                                    <a href="{{ url('class/' . $course->slug) }}"
+                                        class="btn btn-lg btn-primary d-block">Segera Belajar!</a>
                                 </div>
-                                <a href="" class="btn btn-lg btn-primary d-block">Segera Belajar!</a>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4 p-2">
-                        <div class="card border mb-5 p-4">
-                            <div class="position-relative">
-                                <img class="img-fluid rounded mb-4" src="./assets/compiled/jpg/building.jpg"
-                                    alt="" />
-                                <div class="badge p-2 fw-normal position-absolute class-category">
-                                    Hello
-                                </div>
-                            </div>
-
-                            <div class="col-auto">
-                                <div class="d-flex align-items-center mb-4">
-                                    <span class="mt-1 text-black fw-bold" href="">Kelas Inkubasi Bisnis</span>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-12">
-                                        <span>Kelas ini dibangun untuk para UMKM dan koperasi dalam
-                                            mengembangkan bisnis...</span>
-                                    </div>
-                                </div>
-                                <a href="" class="btn btn-lg btn-primary d-block">Segera Belajar!</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 p-2">
-                        <div class="card border mb-5 p-4">
-                            <div class="position-relative">
-                                <img class="img-fluid rounded mb-4" src="./assets/compiled/jpg/building.jpg"
-                                    alt="" />
-                                <div class="badge p-2 fw-normal position-absolute class-category">
-                                    Hello
-                                </div>
-                            </div>
-
-                            <div class="col-auto">
-                                <div class="d-flex align-items-center mb-4">
-                                    <span class="mt-1 text-black fw-bold" href="">Kelas Inkubasi Bisnis</span>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-12">
-                                        <span>Kelas ini dibangun untuk para UMKM dan koperasi dalam
-                                            mengembangkan bisnis...</span>
-                                    </div>
-                                </div>
-                                <a href="" class="btn btn-lg btn-primary d-block">Segera Belajar!</a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

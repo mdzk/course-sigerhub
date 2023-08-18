@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Mail\AccountActived;
+use App\Models\Categories;
+use App\Models\Course;
 use App\Models\Events;
 use App\Models\User;
+use App\Models\Videos;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -41,7 +44,19 @@ class HomeController extends Controller
     }
     public function class()
     {
-        return view('home.class');
+        $courses = Course::join('categories', 'course.id_categories', 'categories.id')
+            ->get();
+        $categories = Categories::all();
+        return view('home.class', compact('courses', 'categories'));
+    }
+
+    public function classShow(string $slug)
+    {
+        $class = Course::join('categories', 'course.id_categories', 'categories.id')
+            ->where('slug', $slug)
+            ->first();
+        $videos = Videos::where('id_course', $class->id)->get();
+        return view('home.class-detail', compact('class', 'videos'));
     }
     public function event()
     {
@@ -50,8 +65,8 @@ class HomeController extends Controller
 
     public function eventShow(string $slug)
     {
-        
-        return view('home.event');
+        $event = Events::where('slug', $slug)->first();
+        return view('home.event-detail', compact('event'));
     }
 
     public function about()

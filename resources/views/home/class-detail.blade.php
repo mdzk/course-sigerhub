@@ -11,7 +11,7 @@
         <div class="container">
             <div class="page-content row py-5">
                 <div class="col-md-12 col-sm-12 mt-5 text-center">
-                    <h2 class="">Kelas Inkubasi bisnis</h2>
+                    <h2 class="">{{ $class->title_course }}</h2>
                     <p class="mt-4 fs-5">
                         Bangun bisnis dari awal dengan materi terbaru dan <br />
                         mentor terbaik di bidangnya !
@@ -59,23 +59,11 @@
         <div class="container">
             <div class="page-content row">
                 <div class="col-md-8 col-sm-12">
-                    <img class="img-fluid rounded mb-5" src="./assets/compiled/jpg/kelas.jpg" alt="" />
+                    <img class="w-100 img-fluid rounded mb-5" src="{{ asset('storage/thumbnail/' . $class->thumbnail) }}"
+                        alt="" />
                     <h4>Deskripsi Kelas :</h4>
                     <p class="mt-4 fs-5">
-                        Kelas "Inkubasi Bisnis & UMKM" adalah sebuah program online yang
-                        dirancang khusus untuk membantu pemilik usaha kecil dan menengah
-                        (UMKM) dalam mengembangkan dan mengoptimalkan bisnis mereka.
-                        Kelas ini bertujuan untuk memberikan pengetahuan, keterampilan,
-                        dan alat praktis yang diperlukan untuk merancang strategi bisnis
-                        yang sukses, meningkatkan kinerja keuangan, dan mengatasi
-                        tantangan yang sering dihadapi oleh UMKM. <br /><br />
-                        Dalam kelas ini, peserta akan dipandu oleh para ahli bisnis yang
-                        berpengalaman dalam berbagai industri. Mereka akan memberikan
-                        wawasan dan panduan praktis melalui kuliah interaktif, diskusi
-                        kelompok, dan studi kasus nyata. Selain itu, kelas ini juga
-                        menyediakan platform online yang memungkinkan peserta untuk
-                        berinteraksi dengan sesama peserta dan fasilitator, bertukar
-                        ide, dan berkolaborasi dalam meningkatkan bisnis mereka.
+                        {!! $class->description !!}
                     </p>
                 </div>
                 <div class="col-md-4 col-sm-12">
@@ -85,29 +73,26 @@
                             <div class="accordion mt-4" id="accordionExample">
                                 <div class="accordion-item shadow-lg border">
                                     <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed fs-6 p-3" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
-                                            aria-controls="collapseOne">
-                                            Manajemen Keuangan
+                                        <button class="accordion-button fs-6 p-3" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Materi
                                         </button>
                                     </h2>
-                                    <div id="collapseOne" class="accordion-collapse collapse"
+                                    <div id="collapseOne" class="accordion-collapse collapse show"
                                         data-bs-parent="#accordionExample">
                                         <div class="accordion-body px-3 py-1">
                                             <ul class="list-unstyled">
-                                                <li class="fs-6 d-flex align-items-center mb-3">
-                                                    <i class="icon-video-circle text-primary d-flex me-2 fs-4"></i>
-                                                    Pengantar Keuangan
-                                                </li>
-                                                <li class="fs-6 d-flex align-items-center">
-                                                    <i class="icon-video-circle text-primary d-flex me-2 fs-4"></i>
-                                                    Manajemen Keuangan Dalam Tim
-                                                </li>
+                                                @foreach ($videos as $video)
+                                                    <li class="fs-6 d-flex align-items-center mb-3">
+                                                        <i class="icon-video-circle text-primary d-flex me-2 fs-4"></i>
+                                                        {{ $video->title_videos }}
+                                                    </li>
+                                                @endforeach
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="accordion-item shadow-lg border">
+                                {{-- <div class="accordion-item shadow-lg border">
                                     <h2 class="accordion-header">
                                         <button class="accordion-button collapsed fs-6 p-3" type="button"
                                             data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
@@ -130,7 +115,7 @@
                                             </ul>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                         <div class="card-footer bg-primary text-center">

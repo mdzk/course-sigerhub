@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
 
 class EventsController extends Controller
 {
@@ -56,6 +57,7 @@ class EventsController extends Controller
 
         Events::create([
             'title_event'   => $request->title_event,
+            'slug' => Str::of($request->title_event)->slug('-'),
             'date'   => $request->date,
             'time'   => $request->time,
             'location'   => $request->location,
@@ -116,6 +118,7 @@ class EventsController extends Controller
             Storage::delete('public/event/' . $event->picture);
             $event->update([
                 'title_event'   => $request->title_event,
+                'slug' => Str::of($request->title_event)->slug('-'),
                 'date'   => $request->date,
                 'time'   => $request->time,
                 'location'   => $request->location,
@@ -126,6 +129,7 @@ class EventsController extends Controller
         } else {
             $event->update([
                 'title_event'   => $request->title_event,
+                'slug' => Str::of($request->title_event)->slug('-'),
                 'date'   => $request->date,
                 'time'   => $request->time,
                 'location'   => $request->location,

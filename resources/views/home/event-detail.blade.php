@@ -5,9 +5,9 @@
         <div class="container">
             <div class="page-content row py-5">
                 <div class="col-md-12 col-sm-12 mt-5 text-center">
-                    <h2 class="">Membangun bisnis mulai dari 0</h2>
+                    <h2 class="">{{ $event->title_event }}</h2>
                     <div class="mt-4 fs-5">
-                        <i class="icon-location me-1"></i><span class="fw-bold">Offline</span>
+                        <i class="icon-location me-1"></i><span class="fw-bold text-capitalize">{{ $event->tipe }}</span>
                     </div>
                 </div>
             </div>
@@ -15,24 +15,25 @@
                 <div class="col-md-3 text-center px-5">
                     <span class="fs-5 fw-bold text-black">Tanggal</span>
                     <hr />
-                    <div class="fs-6">04 Juli 2023</div>
+                    <div class="fs-6">{{ date('d M y', strtotime($event->date)) }}</div>
                 </div>
                 <div class="col-md-3 text-center px-5">
                     <span class="fs-5 fw-bold text-black">Waktu</span>
                     <hr />
-                    <div class="fs-6">09.00 WIB</div>
+                    <div class="fs-6">{{ $event->time }}</div>
                 </div>
                 <div class="col-md-3 text-center px-5">
                     <span class="fs-5 fw-bold text-black">Tempat</span>
                     <hr />
-                    <div class="fs-6">Aula Koma Space Lantai 2</div>
+                    <div class="fs-6">{{ $event->location }}</div>
                 </div>
                 <div class="col-md-3 text-center px-5">
                     <span class="fs-5 fw-bold text-black">Link Pendaftaran</span>
                     <hr />
                     <div class="fs-6">
-                        <a href="#" class="text-info d-flex align-items-center"><i class="icon-link d-flex me-2"></i>
-                            bit.ly/sigerhubusiness1</a>
+                        <a href="{{ $event->link }}" class="text-info d-flex align-items-center justify-content-center"><i
+                                class="icon-link d-flex me-2"></i>
+                            {{ $event->link }}</a>
                     </div>
                 </div>
             </div>
@@ -43,8 +44,11 @@
         <div class="container">
             <div class="page-content row">
                 <div class="col-md-12 col-sm-12">
-                    <img class="img-fluid rounded mb-5" src="./assets/compiled/jpg/event.jpg" alt="" />
-                    <a href="#" class="btn btn-primary text-white p-3 d-block">
+                    <img class="img-fluid w-100 rounded mb-5" src="{{ asset('storage/event/' . $event->picture) }}"
+                        alt="" />
+                    <a target="_blank"
+                        href="https://calendar.google.com/calendar/r/eventedit?text={{ $event->title_event }}&dates={{ date('Ymd', strtotime($event->date)) }}T{{ date('Hi', strtotime($event->time)) }}00/{{ date('Ymd', strtotime($event->date)) }}T{{ date('Hi', strtotime($event->time)) }}00&details=Jangan%20Lupa%20Hadir&location={{ $event->tipe }}%20-%20{{ $event->location }}&sf=true"
+                        class="btn btn-primary text-white p-3 d-block">
                         <svg class="w-auto h-auto me-1" width="25" height="25" viewBox="0 0 25 25" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <g filter="url(#filter0_d_436_5089)">
