@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Categories;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 class CategoriesController extends Controller
@@ -45,7 +46,8 @@ class CategoriesController extends Controller
         }
 
         Categories::create([
-            'name_category'   => $request->name_category
+            'name_category'   => $request->name_category,
+            'slug' => Str::of($request->name_category)->slug('-'),
         ]);
 
         return redirect()->route('categories')->with('message', 'Data berhasil disimpan!');
@@ -89,6 +91,7 @@ class CategoriesController extends Controller
 
         $data->update([
             'name_category' => $request->name_category,
+            'slug' => Str::of($request->name_category)->slug('-'),
         ]);
         return redirect()->route('categories')->with('message', 'Data berhasil disimpan!');
     }

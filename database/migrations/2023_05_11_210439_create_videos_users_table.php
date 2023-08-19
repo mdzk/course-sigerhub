@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('videos_users', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_videos')->references('id')->on('videos');
             $table->unsignedBigInteger('id_users');
             $table->enum('status', ['finish', 'pending']);
             $table->foreign('id_users')->references('id')->on('users');

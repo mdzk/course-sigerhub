@@ -52,9 +52,7 @@ class HomeController extends Controller
 
     public function classShow(string $slug)
     {
-        $class = Course::join('categories', 'course.id_categories', 'categories.id')
-            ->where('slug', $slug)
-            ->first();
+        $class = Course::where('course.slug', $slug)->first();
         $videos = Videos::where('id_course', $class->id)->get();
         return view('home.class-detail', compact('class', 'videos'));
     }
