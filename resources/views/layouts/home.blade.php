@@ -21,7 +21,8 @@
                 <div class="container">
                     <!-- Logo Brand -->
                     <a class="navbar-brand" href="{{ url('') }}">
-                        <img src="{{ url('') }}/assets/static/images/logo/logo.png" alt="Logo Brand" height="50">
+                        <img src="{{ url('') }}/assets/static/images/logo/logo.png" alt="Logo Brand"
+                            height="50">
                     </a>
 
                     <!-- Toggler untuk responsive navbar -->
@@ -48,7 +49,8 @@
                                 <a class="nav-link {{ setActive('event') }}" href="{{ url('event') }}">Event</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{ setActive('about') }}" href="{{ url('about') }}">Tentang Kami</a>
+                                <a class="nav-link {{ setActive('about') }}" href="{{ url('about') }}">Tentang
+                                    Kami</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link {{ setActive('contact') }}" href="{{ url('contact') }}">Kontak</a>
@@ -58,7 +60,31 @@
 
                     <!-- Tombol Action (dengan kelas d-lg-none untuk responsif) -->
                     <div class="d-flex d-none d-md-none d-lg-block">
-                        <a href="{{ url('register') }}" class="btn btn-lg btn-primary p-3">Daftar Sekarang, Gratis !</a>
+                        @if (Auth::user())
+                            <div class="dropdown">
+                                <div data-bs-toggle="dropdown" aria-expanded="false"
+                                    class="avatar avatar-xl border border-4 border-primary">
+                                    <img style="object-fit: cover;cursor: pointer;"
+                                        src="@if (Auth::user()->image == 'default.png') {{ url('assets/static/images/faces/1.jpg') }} @else {{ asset('storage/profile/' . Auth::user()->image) }} @endif"
+                                        alt="Face 1">
+                                </div>
+                                <ul class="dropdown-menu w-25 dropdown-menu-end">
+                                    <li><a class="dropdown-item"
+                                            href="{{ Auth::user()->roles == 'user' ? route('dashboard') : route('admin') }}">Dashboard</a>
+                                    </li>
+                                    <li><a onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                            class="dropdown-item" href="{{ route('logout') }}">Log Out</a></li>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
+                                        @csrf
+                                    </form>
+                                </ul>
+                            </div>
+                        @endif
+                        @if (empty(Auth::user()))
+                            <a href="{{ url('register') }}" class="btn btn-lg btn-primary p-3">Daftar Sekarang, Gratis
+                                !</a>
+                        @endif
                     </div>
                 </div>
             </nav>
@@ -71,7 +97,8 @@
             <div class="container clearfix my-5 py-5">
                 <div class="row">
                     <div class="col-md-4 pe-5">
-                        <img src="{{ url('') }}/assets/static/images/logo/logo.png" alt="Logo Brand" height="50">
+                        <img src="{{ url('') }}/assets/static/images/logo/logo.png" alt="Logo Brand"
+                            height="50">
                         <h5 class="mt-4">Menjadi inkubator bisnis berbasis koperasi pertama di indonesia</h5>
                         <hr>
                         <p class="text-primary fw-bold mb-2">Email : sigerhub@gmail.com</p>
@@ -102,7 +129,8 @@
                                 <h5>Get In Touch</h5>
                                 <hr>
                                 <ul class="list-unstyled d-flex flex-column">
-                                    <li class="py-1"><i class="icon-calendar-2 text-primary me-2"></i> Senin - Jumat /
+                                    <li class="py-1"><i class="icon-calendar-2 text-primary me-2"></i> Senin - Jumat
+                                        /
                                         10.00 -
                                         17.00
                                     </li>

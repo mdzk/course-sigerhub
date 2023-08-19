@@ -42,10 +42,19 @@ class HomeController extends Controller
 
         return view('home.homepage', compact('events'));
     }
+    public function categoryShow(string $slug)
+    {
+        $courses = Course::join('categories', 'course.id_categories', 'categories.id')
+            ->where('categories.slug', $slug)
+            ->get(['course.*', 'categories.slug as category_slug', 'categories.name_category']);
+        $categories = Categories::all();
+        return view('home.class', compact('courses', 'categories'));
+    }
+
     public function class()
     {
         $courses = Course::join('categories', 'course.id_categories', 'categories.id')
-            ->get();
+            ->get(['course.*', 'categories.slug as category_slug', 'categories.name_category']);
         $categories = Categories::all();
         return view('home.class', compact('courses', 'categories'));
     }

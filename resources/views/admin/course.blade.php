@@ -58,7 +58,7 @@
                                                 <td>{{ $i++ }}</td>
                                                 <td>{{ $course->title_course }}</td>
                                                 <td>{{ $course->name_category }}</td>
-                                                <td>{{ $course->description }}</td>
+                                                <td>{!! Str::limit($course->description, 75) !!}</td>
                                                 <td>
                                                     <a type="button" href="{{ url('admin/course/edit/' . $course->id) }}"
                                                         class="btn btn-info text-white">

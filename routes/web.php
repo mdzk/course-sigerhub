@@ -29,6 +29,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->middl
 Route::get('/class', [HomeController::class, 'class']);
 Route::get('/class/{slug}', [HomeController::class, 'classShow']);
 
+Route::get('/category/{slug}', [HomeController::class, 'categoryShow']);
+
 Route::get('/event', [HomeController::class, 'event']);
 Route::get('/event/{slug}', [HomeController::class, 'eventShow']);
 

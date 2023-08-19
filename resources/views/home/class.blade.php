@@ -43,11 +43,19 @@
                             <h4>Kategori Kelas :</h4>
                         </div>
                         <div class="d-flex flex-wrap">
-                            <a class="btn me-3 p-3 mb-3 btn-lg btn-primary">
+                            @php
+                                function setBtn($url, $class = 'btn-primary')
+                                {
+                                    return request()->is($url) ? $class : 'btn-secondary';
+                                }
+                            @endphp
+
+                            <a href="{{ url('class') }}" class="btn me-3 p-3 mb-3 btn-lg {{ setBtn('class') }}">
                                 Semua Kategori
                             </a>
                             @foreach ($categories as $category)
-                                <a class="btn me-3 p-3 mb-3 btn-lg btn-secondary">
+                                <a href="{{ url('category/' . $category->slug) }}"
+                                    class="btn me-3 p-3 mb-3 btn-lg {{ setBtn('category/' . $category->slug) }}">
                                     {{ $category->name_category }}
                                 </a>
                             @endforeach
@@ -94,8 +102,8 @@
 
                                 <div class="col-auto">
                                     <div class="d-flex align-items-center mb-4">
-                                        <span class="mt-1 text-black fw-bold"
-                                            href="">{{ $course->title_course }}</span>
+                                        <a class="mt-1 text-black fw-bold"
+                                            href="{{ url('class/' . $course->slug) }}">{{ $course->title_course }}</a>
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-md-12">
