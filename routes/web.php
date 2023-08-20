@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\EventsController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UsersVerificationController;
+use App\Http\Controllers\User\UserDashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,8 +34,8 @@ Route::get('/class', [HomeController::class, 'classSearch'])->name('search');
 Route::get('/category/{slug}', [HomeController::class, 'categoryShow']);
 
 Route::get('/event', [HomeController::class, 'event']);
-Route::get('/event/{slug}', [HomeController::class, 'eventShow']);
-Route::get('/event/tipe', [HomeController::class, 'eventTipe']);
+Route::get('/event/detail/{slug}', [HomeController::class, 'eventShow']);
+Route::get('/event/category/{slug}', [HomeController::class, 'eventTipe'])->name('event-tipe');
 
 Route::get('/about', [HomeController::class, 'about']);
 Route::get('/contact', [HomeController::class, 'contact']);
@@ -87,7 +88,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 });
 
 Route::prefix('dashboard')->middleware(['auth', 'user'])->group(function () {
-    Route::get('', [AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::get('', [UserDashboardController::class, 'index'])->name('dashboard');
 });
 
 // Authentication Section

@@ -267,7 +267,7 @@
                                             <div class="d-flex align-items-center mb-4">
                                                 <i class="icon-lamp-on text-primary d-flex fs-4"></i>
                                                 <a class="ms-3 mt-1 text-black fw-bold"
-                                                    href="{{ url('event/' . $event->slug) }}">{{ $event->title_event }}</a>
+                                                    href="{{ url('event/detail/' . $event->slug) }}">{{ $event->title_event }}</a>
                                             </div>
                                             <div class="row mb-3">
                                                 <div class="col-md-6 d-flex align-items-center">

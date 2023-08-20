@@ -39,104 +39,29 @@
 
                 <div class="sidebar-menu">
                     <ul class="menu">
-                        <li class="sidebar-item {{ setActive('admin') }}">
-                            <a href="{{ url('admin') }}" class="sidebar-link">
+                        <li class="sidebar-item {{ setActive('dashboard') }}">
+                            <a href="{{ url('dashboard') }}" class="sidebar-link">
                                 <i class="d-flex icon-home"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
 
-                        <li
-                            class="sidebar-item has-sub {{ setActive('admin/users-verification') }} {{ setActive('admin/users') }}">
-                            <a href="#" class="sidebar-link">
-                                <i class="d-flex icon-activity"></i>
-                                <span>Manajemen Usaha</span>
-                            </a>
-
-                            <ul class="submenu">
-                                <li class="submenu-item {{ setActive('admin/users-verification') }}">
-                                    <a href="{{ url('admin/users-verification') }}" class="submenu-link">Verifikasi
-                                        Akun Usaha</a>
-                                </li>
-
-                                <li class="submenu-item {{ setActive('admin/users') }}">
-                                    <a href="{{ url('admin/users') }}" class="submenu-link">Daftar Akun Usaha</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li
-                            class="sidebar-item has-sub {{ setActive('admin/course') }} {{ setActive('admin/course/create') }}">
-                            <a href="#" class="sidebar-link">
-                                <i class="d-flex icon-clipboard-text"></i>
-                                <span>Manajemen Kelas</span>
-                            </a>
-
-                            <ul class="submenu">
-                                <li class="submenu-item {{ setActive('admin/course') }}">
-                                    <a href="{{ url('admin/course') }}" class="submenu-link">Daftar Kelas</a>
-                                </li>
-
-                                <li class="submenu-item {{ setActive('admin/course/create') }}">
-                                    <a href="{{ route('course-create') }}" class="submenu-link">Tambah Kelas</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="sidebar-item has-sub">
-                            <a href="#" class="sidebar-link">
+                        <li class="sidebar-item {{ setActive('dashboard') }}">
+                            <a href="{{ url('dashboard') }}" class="sidebar-link">
                                 <i class="d-flex icon-video-circle"></i>
-                                <span>Manajemen Video</span>
+                                <span>Kelas Inkubasi Terdaftar</span>
                             </a>
-
-                            <ul class="submenu">
-                                <li class="submenu-item">
-                                    <a href="video-daftar.html" class="submenu-link">Daftar Video</a>
-                                </li>
-
-                                <li class="submenu-item">
-                                    <a href="video-tambah.html" class="submenu-link">Tambah Video</a>
-                                </li>
-                            </ul>
                         </li>
 
-                        <li
-                            class="sidebar-item has-sub {{ setActive('admin/categories') }} {{ setActive('admin/categories/create') }}">
-                            <a href="#" class="sidebar-link">
-                                <i class="d-flex icon-note"></i>
-                                <span>Manajemen Ketegori</span>
+                        <li class="sidebar-item {{ setActive('dashboard') }}">
+                            <a href="{{ url('dashboard') }}" class="sidebar-link">
+                                <i class="d-flex icon-note-text"></i>
+                                <span>Sertifikat</span>
                             </a>
-
-                            <ul class="submenu">
-                                <li class="submenu-item {{ setActive('admin/categories') }}">
-                                    <a href="{{ route('categories') }}" class="submenu-link">Daftar Kategori</a>
-                                </li>
-
-                                <li class="submenu-item {{ setActive('admin/categories/create') }}">
-                                    <a href="{{ route('categories-create') }}" class="submenu-link">Tambah Kategori</a>
-                                </li>
-                            </ul>
                         </li>
 
-                        <li class="sidebar-item has-sub">
-                            <a href="#" class="sidebar-link">
-                                <i class="d-flex icon-calendar-2"></i>
-                                <span>Manajemen Event</span>
-                            </a>
-
-                            <ul class="submenu">
-                                <li class="submenu-item">
-                                    <a href="event-daftar.html" class="submenu-link">Daftar Event</a>
-                                </li>
-
-                                <li class="submenu-item">
-                                    <a href="event-tambah.html" class="submenu-link">Tambah Event</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="sidebar-item">
-                            <a href="pengaturan.html" class="sidebar-link">
+                        <li class="sidebar-item {{ setActive('dashboard') }}">
+                            <a href="{{ url('dashboard') }}" class="sidebar-link">
                                 <i class="d-flex icon-setting-2"></i>
                                 <span>Pengaturan</span>
                             </a>

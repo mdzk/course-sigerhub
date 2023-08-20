@@ -82,9 +82,10 @@ class HomeController extends Controller
         return view('home.event', compact('events'));
     }
 
-    public function eventTipe(Request $request)
+    public function eventTipe(string $slug)
     {
         $events = Events::orderBy('created_at', 'desc')
+            ->where('tipe', $slug)
             ->get();
         return view('home.event', compact('events'));
     }

@@ -22,14 +22,24 @@
             <div class="page-content row">
                 <div class="col-md-12-col-sm-12">
                     <div class="row mb-5">
+                        @php
+                            function setBtn($url, $class = 'btn-primary')
+                            {
+                                return url()->current() == url($url) ? $class : 'btn-secondary';
+                            }
+                        @endphp
+
                         <div class="d-flex flex-wrap justify-content-center">
-                            <a href="{{ url('event') }}" class="btn me-3 p-3 mb-3 btn-lg btn-primary">
+                            <a href="{{ url('event') }}" class="btn me-3 p-3 mb-3 btn-lg {{ setBtn('event') }}">
                                 Semua Kategori
                             </a>
-                            <a href="{{ url('event/tipe?q=online') }}" class="btn me-3 p-3 mb-3 btn-lg btn-secondary">
+                            <a href="{{ url('event/category/online') }}"
+                                class="btn me-3 p-3 mb-3 btn-lg {{ setBtn('event/category/online') }}">
                                 Online Event
                             </a>
-                            <a href="{{ url('event/tipe?q=offline') }}" class="btn me-3 p-3 mb-3 btn-lg btn-secondary">
+
+                            <a href="{{ url('event/category/offline') }}"
+                                class="btn me-3 p-3 mb-3 btn-lg {{ setBtn('event/category/offline') }}">
                                 Offline Event </a>
                         </div>
                     </div>
@@ -52,7 +62,7 @@
                                         <div class="d-flex align-items-center mb-4">
                                             <i class="icon-lamp-on text-primary d-flex fs-4"></i>
                                             <a class="ms-3 mt-1 text-black fw-bold"
-                                                href="{{ url('event/' . $event->slug) }}">{{ $event->title_event }}</a>
+                                                href="{{ url('event/detail/' . $event->slug) }}">{{ $event->title_event }}</a>
                                         </div>
                                         <div class="row mb-3">
                                             <div class="col-md-6 d-flex align-items-center">
