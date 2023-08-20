@@ -28,11 +28,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->middl
 
 Route::get('/class', [HomeController::class, 'class']);
 Route::get('/class/{slug}', [HomeController::class, 'classShow']);
+Route::get('/class', [HomeController::class, 'classSearch'])->name('search');
 
 Route::get('/category/{slug}', [HomeController::class, 'categoryShow']);
 
 Route::get('/event', [HomeController::class, 'event']);
 Route::get('/event/{slug}', [HomeController::class, 'eventShow']);
+Route::get('/event/tipe', [HomeController::class, 'eventTipe']);
 
 Route::get('/about', [HomeController::class, 'about']);
 Route::get('/contact', [HomeController::class, 'contact']);

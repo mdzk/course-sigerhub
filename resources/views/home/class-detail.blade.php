@@ -23,7 +23,7 @@
                     <span class="fs-5 fw-bold text-black">Total Enrolled</span>
                     <hr />
                     <div class="fs-6">
-                        <span class="text-primary fw-bold">1,400</span> enrolled
+                        <span class="text-primary fw-bold">{{ $total_enroll }}</span> enrolled
                     </div>
                 </div>
                 <div class="col-md-3 text-center px-5">

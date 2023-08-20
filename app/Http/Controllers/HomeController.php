@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\AccountActived;
 use App\Models\Categories;
 use App\Models\Course;
+use App\Models\CourseUsers;
 use App\Models\Events;
 use App\Models\User;
 use App\Models\Videos;
@@ -63,11 +64,29 @@ class HomeController extends Controller
     {
         $class = Course::where('course.slug', $slug)->first();
         $videos = Videos::where('id_course', $class->id)->get();
-        return view('home.class-detail', compact('class', 'videos'));
+        $total_enroll = CourseUsers::where('id_course', $class->id)->count();
+        return view('home.class-detail', compact('class', 'videos', 'total_enroll'));
+    }
+
+    public function classSearch(Request $request)
+    {
+        $courses = Course::join('categories', 'course.id_categories', 'categories.id')
+            ->where("title_course", "like", "%" . $request->search . "%")
+            ->get(['course.*', 'categories.slug as category_slug', 'categories.name_category']);
+        $categories = Categories::all();
+        return view('home.class', compact('courses', 'categories'));
     }
     public function event()
     {
-        return view('home.event');
+        $events = Events::all();
+        return view('home.event', compact('events'));
+    }
+
+    public function eventTipe(Request $request)
+    {
+        $events = Events::orderBy('created_at', 'desc')
+            ->get();
+        return view('home.event', compact('events'));
     }
 
     public function eventShow(string $slug)

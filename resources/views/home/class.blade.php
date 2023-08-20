@@ -20,11 +20,13 @@
                         Segera bergabung & belajar bersama kami sekarang !
                     </p>
                     <div class="form-group position-relative has-icon-right mt-5">
-                        <input type="text" class="form-control form-control-xl"
-                            placeholder="Cari Kelas yang anda inginkan..." />
-                        <div class="form-control-icon">
-                            <i class="icon-search-normal"></i>
-                        </div>
+                        <form action="{{ route('search') }}">
+                            <input name="search" type="text" class="form-control form-control-xl"
+                                placeholder="Cari Kelas yang anda inginkan..." />
+                            <div class="form-control-icon">
+                                <button type="submit" class="bg-white border-0"><i class="icon-search-normal"></i></button>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-12 mt-5 d-flex justify-content-end align-items-center">
@@ -74,9 +76,16 @@
                         <div class="col-12 text-center">
                             <h2 class="">Daftar Kelas :</h2>
                             <p class="mt-4 fs-5">
-                                Cari kelas pilihan anda dengan cara mencari nama kelas atau
+                                @isset($_GET['search'])
+                                    Menampilkan hasil pencarian <span
+                                        class="fw-bold text-primary">"{{ $_GET['search'] }}"</span>
+                                @endisset
+                                @empty($_GET)
+                                    Cari kelas pilihan anda dengan cara mencari nama kelas atau
+                                    <br>
+                                    memilih salah satu kategori kelas diatas.
+                                @endempty
                                 <br />
-                                memilih salah satu kategori kelas diatas.
                             </p>
                         </div>
                     </div>
