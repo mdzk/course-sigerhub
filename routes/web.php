@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\EventsController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UsersVerificationController;
+use App\Http\Controllers\User\CourseController as UserCourseController;
 use App\Http\Controllers\User\UserDashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,7 +28,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->middleware('auth')->name('home');
 
-Route::get('/class', [HomeController::class, 'class']);
 Route::get('/class/{slug}', [HomeController::class, 'classShow']);
 Route::get('/class', [HomeController::class, 'classSearch'])->name('search');
 
@@ -89,6 +89,8 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 
 Route::prefix('dashboard')->middleware(['auth', 'user'])->group(function () {
     Route::get('', [UserDashboardController::class, 'index'])->name('dashboard');
+    Route::get('course', [UserCourseController::class, 'index'])->name('dashboard-course');
+    Route::get('class/{class}/{video}', [UserCourseController::class, 'video']);
 });
 
 // Authentication Section
