@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\Videos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class VideosController extends Controller
 {
@@ -54,6 +55,7 @@ class VideosController extends Controller
             'title_videos'   => $request->title_videos,
             'iframe'   => $request->iframe,
             'id_course'   => $request->id_course,
+            'slug' => Str::of($request->title_videos)->slug('-'),
         ]);
 
         return redirect()->route('video')->with('message', 'Data berhasil disimpan!');
@@ -101,6 +103,8 @@ class VideosController extends Controller
             'title_videos'   => $request->title_videos,
             'iframe'   => $request->iframe,
             'id_course'   => $request->id_course,
+            'slug' => Str::of($request->title_videos)->slug('-'),
+
         ]);
 
         return redirect()->route('video')->with('message', 'Data berhasil disimpan!');

@@ -65,6 +65,12 @@ class HomeController extends Controller
         $class = Course::where('course.slug', $slug)->first();
         $videos = Videos::where('id_course', $class->id)->get();
         $total_enroll = CourseUsers::where('id_course', $class->id)->count();
+        if (Auth::user()) {
+            $enroll = CourseUsers::where('id_users', Auth::user()->id)
+                ->where('id_course', $class->id)
+                ->first();
+            return view('home.class-detail', compact('class', 'videos', 'total_enroll', 'enroll'));
+        }
         return view('home.class-detail', compact('class', 'videos', 'total_enroll'));
     }
 

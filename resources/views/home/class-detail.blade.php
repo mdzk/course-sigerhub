@@ -1,9 +1,23 @@
 @extends('layouts.home')
 
-@section('title', 'Kelas Inkubasi')
+@section('title', $class->title_course)
 
 @push('styles')
     <link rel="stylesheet" href="{{ url('') }}/assets/compiled/css/custom.css" />
+    <link rel="stylesheet" href="{{ url('') }}/assets/extensions/sweetalert2/sweetalert2.min.css" />
+@endpush
+
+@push('scripts')
+    <script src="{{ url('') }}/assets/extensions/sweetalert2/sweetalert2.min.js"></script>
+    @if (session('message'))
+        <script>
+            Swal.fire(
+                'Berhasil!',
+                '{{ session('message') }}',
+                'success'
+            )
+        </script>
+    @endif
 @endpush
 
 @section('content')
@@ -118,12 +132,22 @@
                                 </div> --}}
                             </div>
                         </div>
-                        <div class="card-footer bg-primary text-center">
-                            <a href="" class="d-block fs-6 fw-bold text-white">Segera Belajar!</a>
-                        </div>
+                        @if (!empty($enroll))
+                            <div class="card-footer bg-info text-center">
+                                <a href="{{ url('class/' . $class->slug . '/access') }}"
+                                    class="d-block fs-6 fw-bold text-white">Lanjutkan Belajar!</a>
+                            </div>
+                        @endif
+                        @if (empty($enroll) || empty(Auth::user()))
+                            <div class="card-footer bg-primary text-center">
+                                <a href="{{ url('class/' . $class->slug . '/access') }}"
+                                    class="d-block fs-6 fw-bold text-white">Segera Belajar!</a>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </section>
 @endsection

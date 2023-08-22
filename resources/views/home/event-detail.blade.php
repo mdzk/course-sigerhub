@@ -1,5 +1,7 @@
 @extends('layouts.home')
 
+@section('title', $event->title_event);
+
 @section('content')
     <section class="pt-5">
         <div class="container">

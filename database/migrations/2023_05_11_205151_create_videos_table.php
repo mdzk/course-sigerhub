@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('videos', function (Blueprint $table) {
             $table->id();
             $table->string('title_videos');
+            $table->string('slug');
             $table->text('iframe');
             $table->unsignedBigInteger('id_course');
             $table->foreign('id_course')->references('id')->on('course');

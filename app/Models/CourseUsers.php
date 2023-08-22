@@ -11,6 +11,7 @@ class CourseUsers extends Model
     protected $table = 'course_users';
     protected $fillable = [
         'id_course',
-        'id_users'
+        'id_users',
+        'status'
     ];
 }

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_course')->references('id')->on('course');
             $table->unsignedBigInteger('id_users');
+            $table->enum('status', ['finish', 'pending']);
             $table->foreign('id_users')->references('id')->on('users');
             $table->timestamps();
         });

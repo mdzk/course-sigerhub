@@ -46,7 +46,8 @@
                             </a>
                         </li>
 
-                        <li class="sidebar-item {{ setActive('dashboard/course') }}">
+                        <li
+                            class="sidebar-item {{ setActive('dashboard/course') }} {{ setActive('dashboard/course/finish') }}">
                             <a href="{{ route('dashboard-course') }}" class="sidebar-link">
                                 <i class="d-flex icon-video-circle"></i>
                                 <span>Kelas Inkubasi Terdaftar</span>

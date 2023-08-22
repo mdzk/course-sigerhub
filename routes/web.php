@@ -30,7 +30,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->middl
 
 Route::get('/class/{slug}', [HomeController::class, 'classShow']);
 Route::get('/class', [HomeController::class, 'classSearch'])->name('search');
-Route::get('/class/{class}/{video}', [UserCourseController::class, 'video'])->middleware(['auth', 'user']);
+Route::get('/class/{class}/access', [UserCourseController::class, 'access'])->middleware(['auth', 'user']);
+Route::get('/class/{class}/access/{video}', [UserCourseController::class, 'video'])->middleware(['auth', 'user']);
 
 Route::get('/category/{slug}', [HomeController::class, 'categoryShow']);
 
@@ -91,8 +92,10 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 Route::prefix('dashboard')->middleware(['auth', 'user'])->group(function () {
     Route::get('', [UserDashboardController::class, 'index'])->name('dashboard');
     Route::get('course', [UserCourseController::class, 'index'])->name('dashboard-course');
+    Route::get('course/finish', [UserCourseController::class, 'finish'])->name('dashboard-course-finish');
+    Route::post('course/video/check/{slug}', [UserCourseController::class, 'check'])->name('video-check');
+    Route::get('certificate', [UserCourseController::class, 'certificate'])->name('dashboard-certificate');
 });
-
 
 // Authentication Section
 Auth::routes();

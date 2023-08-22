@@ -24,16 +24,22 @@
                                 <h4>Kelas Inkubasi Terdaftar
                                     <a href="{{ route('search') }}" class="ms-3 btn btn-sm btn-info fw-normal fs-5">
                                         <i class="icon-search-normal"></i>
-                                        <span>Telusuri
-                                            Kelas Baru</span></a>
+                                        <span>Telusuri Kelas</span></a>
                                 </h4>
+                                @php
+                                    function setNavActive($url, $class = 'active text-white shadow-none')
+                                    {
+                                        return request()->is($url) ? $class : 'text-muted';
+                                    }
+                                @endphp
                                 <ul class="nav nav-pills">
                                     <li class="nav-item">
-                                        <a class="nav-link active text-white shadow-none" aria-current="page"
-                                            href="#">Kelas Aktif</a>
+                                        <a class="nav-link {{ setNavActive('dashboard/course') }}" aria-current="page"
+                                            href="{{ route('dashboard-course') }}">Kelas Aktif</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link text-muted" href="#">Kelas Terselesaikan</a>
+                                        <a class="nav-link {{ setNavActive('dashboard/course/finish') }}"
+                                            href="{{ route('dashboard-course-finish') }}">Kelas Terselesaikan</a>
                                     </li>
                                 </ul>
                             </div>
@@ -62,8 +68,8 @@
                                                             <span>{!! Str::limit($course->description, 75) !!}</span>
                                                         </div>
                                                     </div>
-                                                    <a href="{{ url('class/' . $course->slug) }}"
-                                                        class="btn btn-lg btn-primary d-block">Segera Belajar!</a>
+                                                    <a href="{{ url('class/' . $course->slug . '/access') }}"
+                                                        class="btn btn-lg btn-info d-block">Lanjutkan Belajar!</a>
                                                 </div>
                                             </div>
                                         </div>

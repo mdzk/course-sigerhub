@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> @yield('title') | Siger Innovation Hub </title>
+    <title> {{ $course->title_course }} | Siger Innovation Hub </title>
     <link rel="shortcut icon" href="{{ url('') }}/assets/static/images/logo/favicon.png" type="image/png">
     <link rel="stylesheet" href="{{ url('') }}/assets/compiled/css/app.css" />
     <link rel="stylesheet" href="{{ url('') }}/assets/compiled/css/iconsax.css" />
@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="col-md-9 p-4 bg-secondary d-flex align-items-center justify-content-between">
-                <a href="{{ route('dashboard-course') }}" class="d-flex align-items-center">
+                <a href="{{ url('class/' . $class) }}" class="d-flex align-items-center">
                     <svg class="me-1" style="width: 25px; height: 25px;" width="24" height="25"
                         viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -46,50 +46,64 @@
                     <span class="d-flex me-2 fs-6">
                         <div class="d-none d-sm-none d-md-block me-1">
                             Perkembangan Belajar Anda:
-                        </div>1 dari 25 Video
+                        </div>{{ $video_user_total }} dari {{ $video_total }} Video
                     </span>
-                    <button class="d-flex align-items-center btn-primary btn">
-                        <h4 class="fs-6 d-none d-sm-none d-md-block m-0 fw-normal text-white me-2">Tandai jika sudah
-                            selesai
-                        </h4>
-                        <div class="">
-                            <svg style="width: 25px; height: 25px;"viewBox="0 0 24 25" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M20 6.5L9 17.5L4 12.5" stroke="white" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </svg>
-                        </div>
-                    </button>
+                    @empty($video_user_check)
+                        <button onclick="event.preventDefault(); document.getElementById('check-form').submit();"
+                            class="d-flex align-items-center btn-primary btn">
+                            <h4 class="fs-6 d-none d-sm-none d-md-block m-0 fw-normal text-white me-2">Tandai selesai
+                            </h4>
+                            <div class="">
+                                <svg style="width: 25px; height: 25px;"viewBox="0 0 24 25" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 6.5L9 17.5L4 12.5" stroke="white" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                        </button>
+                        <form id="check-form" action="{{ route('video-check', $video_slug) }}" method="POST"
+                            class="d-none">
+                            @csrf
+                        </form>
+                    @endempty
+
+                    @if (!empty($video_user_check))
+                        <button disabled class="d-flex align-items-center btn-primary btn">
+                            <h4 class="fs-6 d-none d-sm-none d-md-block m-0 fw-normal text-white me-2">Ditandai selesai
+                            </h4>
+                            <div class="">
+                                <svg style="width: 25px; height: 25px;" viewBox="0 0 24 25" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 6.5L9 17.5L4 12.5" stroke="white" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                        </button>
+                    @endif
+
+
                 </div>
             </div>
         </div>
         <div class="row g-0">
             <div class="col-md-3 order-md-first order-last pe-0">
                 <div class="p-2">
-                    <a class="d-flex align-items-center fs-6 p-3 btn btn-success mb-2">
-                        <i class="fs-4 d-flex icon-video-circle h-auto w-auto me-1"></i>
-                        <span>#01-Video Pengantar Video Pengantar Video Pengantar</span>
-                    </a>
-
-                    <a class="d-flex align-items-center fs-6 p-3 btn btn-secondary mb-2">
-                        <i class="fs-4 d-flex icon-video-circle h-auto w-auto me-1"></i>
-                        <span>#01-Video Pengantar</span>
-                    </a>
-                    <a class="d-flex align-items-center fs-6 p-3 btn btn-white mb-2">
-                        <i class="fs-4 d-flex icon-video-circle h-auto w-auto me-1"></i>
-                        <span>#01-Video Pengantar</span>
-                    </a>
-                    <a class="d-flex align-items-center fs-6 p-3 btn btn-secondary mb-2">
-                        <i class="fs-4 d-flex icon-video-circle h-auto w-auto me-1"></i>
-                        <span>#01-Video Pengantar</span>
-                    </a>
+                    @php
+                        $i = 1;
+                    @endphp
+                    @foreach ($videos as $video)
+                        <a href="{{ url('class/' . $class . '/access/' . $video->slug) }}"
+                            class="d-flex align-items-center fs-6 p-3 mb-2 btn
+                            {{-- @if (!empty($video_user)) @if ($video_user[$i]->id == $video->id) btn-success @endif @endif --}}
+                            @if ($video_playing->slug == $video->slug) btn-secondary @endif @if ($video_playing->slug !== $video->slug) btn-white @endif">
+                            <i class="fs-4 d-flex icon-video-circle h-auto w-auto me-1"></i>
+                            <span>#{{ $i++ }}-{{ $video->title_videos }}</span>
+                        </a>
+                    @endforeach
                 </div>
             </div>
             <div class="col-md-9 p-0">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/siWF-OzDkr4"
-                    title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen></iframe>
+                {!! $video_playing->iframe !!}
             </div>
         </div>
     </div>
