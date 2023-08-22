@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Course;
 use App\Models\CourseUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,6 +23,14 @@ class CourseController extends Controller
     public function video(string $class, string $video)
     {
         //
+        $course = Course::where('slug', $class);
+        $enroll = CourseUsers::where('id_users', Auth::user()->id)
+            ->where('id_course', $course->id)
+            ->get();
+
+        if (empty($enroll)) {
+            
+        }
         return view('user.video', compact('class', 'video'));
     }
 
