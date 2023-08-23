@@ -27,7 +27,7 @@
                                     </div>
                                     <div class="ms-3 name">
                                         <h5 class="font-bold">Kelas Inkubasi Terdaftar</h5>
-                                        <h6 class="text-muted font-extrabold mb-0">{{ $data['users_count'] }}</h6>
+                                        <h6 class="text-muted font-extrabold mb-0">{{ $data['course_count'] }}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -42,7 +42,7 @@
                                     </div>
                                     <div class="ms-3 name">
                                         <h5 class="font-bold">Jumlah Kelas Aktif</h5>
-                                        <h6 class="text-muted font-extrabold mb-0">{{ $data['course_count'] }}</h6>
+                                        <h6 class="text-muted font-extrabold mb-0">{{ $data['course_pending'] }}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -62,7 +62,7 @@
                                     </div>
                                     <div class="ms-3 name">
                                         <h5 class="font-bold">Kelas yang telah diselesaikan</h5>
-                                        <h6 class="text-muted font-extrabold mb-0">{{ $data['course_count'] }}</h6>
+                                        <h6 class="text-muted font-extrabold mb-0">{{ $data['course_finish'] }}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -82,22 +82,18 @@
                                             <div class="col-md-4 py-2">
                                                 <img style="object-fit: cover;height: 250px; width: 100%"
                                                     class="rounded img-fluid"
-                                                    src="{{ url('assets/static/images/samples/architecture1.jpg') }}"
+                                                    src="{{ asset('storage/thumbnail/' . $course_recent[0]->thumbnail) }}"
                                                     alt="Face 1">
                                             </div>
                                             <div class="col-md-8 px-2 py-2">
-                                                <h4>Kelas Inkubasi Bisnis & UMKM</h4>
+                                                <h4>{{ $course_recent[0]->title_course }}</h4>
                                                 <div class="d-flex align-items-center my-3">
-                                                    <i class="d-flex fs-4 icon-video-circle text-warning me-2"></i><span>30
-                                                        Video</span>
+                                                    <i class="d-flex fs-4 icon-video-circle text-warning me-2"></i><span>
+                                                        {{ count($course_recent) }} Video</span>
                                                 </div>
-                                                <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores
-                                                    illum
-                                                    ratione voluptatem! Ipsam ut provident totam, sed libero similique
-                                                    assumenda dolores earum placeat ipsum ab harum ullam dicta corporis
-                                                    natus!</div>
+                                                <div>{{ Str::limit($course_recent[0]->description, 150) }}</div>
                                                 <div class="col-auto my-3">
-                                                    <a href="{{ route('setting-edit') }}"
+                                                    <a href="{{ url('class/' . $course_recent[0]->slug . '/access') }}"
                                                         class="btn btn-info btn-lg text-white">
                                                         <svg style="width: 30px; height: 30px;" viewBox="0 0 26 26"
                                                             fill="none" xmlns="http://www.w3.org/2000/svg">

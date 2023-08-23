@@ -10,7 +10,9 @@ use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\EventsController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UsersVerificationController;
+use App\Http\Controllers\User\CertificateController;
 use App\Http\Controllers\User\CourseController as UserCourseController;
+use App\Http\Controllers\User\SettingController as UserSettingController;
 use App\Http\Controllers\User\UserDashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -94,7 +96,10 @@ Route::prefix('dashboard')->middleware(['auth', 'user'])->group(function () {
     Route::get('course', [UserCourseController::class, 'index'])->name('dashboard-course');
     Route::get('course/finish', [UserCourseController::class, 'finish'])->name('dashboard-course-finish');
     Route::post('course/video/check/{slug}', [UserCourseController::class, 'check'])->name('video-check');
-    Route::get('certificate', [UserCourseController::class, 'certificate'])->name('dashboard-certificate');
+    Route::get('certificate', [CertificateController::class, 'index'])->name('dashboard-certificate');
+    Route::get('setting', [UserSettingController::class, 'index'])->name('dashboard-setting');
+    Route::get('setting/edit', [UserSettingController::class, 'edit'])->name('dashboard-setting-edit');
+    Route::post('setting/update', [UserSettingController::class, 'update'])->name('dashboard-setting-update');
 });
 
 // Authentication Section

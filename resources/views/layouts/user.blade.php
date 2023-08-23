@@ -54,15 +54,15 @@
                             </a>
                         </li>
 
-                        <li class="sidebar-item {{ setActive('dashboard') }}">
-                            <a href="{{ url('dashboard') }}" class="sidebar-link">
+                        <li class="sidebar-item {{ setActive('dashboard/certificate') }}">
+                            <a href="{{ route('dashboard-certificate') }}" class="sidebar-link">
                                 <i class="d-flex icon-note-text"></i>
                                 <span>Sertifikat</span>
                             </a>
                         </li>
 
-                        <li class="sidebar-item {{ setActive('dashboard') }}">
-                            <a href="{{ url('dashboard') }}" class="sidebar-link">
+                        <li class="sidebar-item {{ setActive('dashboard/setting') }}">
+                            <a href="{{ route('dashboard-setting') }}" class="sidebar-link">
                                 <i class="d-flex icon-setting-2"></i>
                                 <span>Pengaturan</span>
                             </a>

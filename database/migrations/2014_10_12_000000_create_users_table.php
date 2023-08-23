@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('nama_usaha')->nullable();
             $table->string('bidang_usaha')->nullable();
             $table->string('nohp')->nullable();
+            $table->text('description')->nullable();
             $table->enum('status', ['active', 'pending', 'reject']);
             $table->boolean('first_attemp');
             $table->string('image');
