@@ -52,7 +52,7 @@ class UserDashboardController extends Controller
             ->orderBy('course_users.created_at', 'DESC')
             ->first();
 
-        $course_recent = Videos::where('id_course', $class->id)
+        $course_recent = Videos::where('id_course', $class == NULL ? NULL : $class->id)
             ->join('course', 'course.id', 'videos.id_course')
             ->get();
 

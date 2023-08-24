@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comments;
 use App\Models\Course;
 use App\Models\CourseUsers;
 use App\Models\Videos;
@@ -58,10 +59,14 @@ class CourseController extends Controller
 
     public function video(string $class, string $video_slug)
     {
-        $course = Course::where('slug', $class)->first();
+        $course = Course::where('course.slug', $class)
+            ->join('categories', 'categories.id', 'course.id_categories')
+            ->first(['course.*', 'categories.slug as category_slug', 'categories.name_category']);
+
         $enroll = CourseUsers::where('id_users', Auth::user()->id)
             ->where('id_course', $course->id)
             ->first();
+
         if (empty($enroll)) {
             return redirect()->to('class');
         }
@@ -88,8 +93,12 @@ class CourseController extends Controller
             ->count();
 
         $video_total  = Videos::where('id_course', $course->id)->orderBy('created_at', 'ASC')->count();
+        $comments    = Comments::join('users', 'users.id', 'comments.id_users')
+            ->where('id_videos', $video_playing->id)
+            ->orderBy('created_at', 'DESC')
+            ->get(['comments.*', 'users.name', 'users.image']);
 
-        return view('user.video', compact('course', 'video_user_check', 'video_slug', 'class', 'videos', 'video_playing', 'video_user_total', 'video_total'));
+        return view('user.video', compact('comments', 'course', 'video_user_check', 'video_slug', 'class', 'videos', 'video_playing', 'video_user_total', 'video_total'));
     }
 
     /**

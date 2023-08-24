@@ -104,6 +104,115 @@
             </div>
             <div class="col-md-9 p-0">
                 {!! $video_playing->iframe !!}
+                <div class="px-4 row g-0 d-none d-sm-none d-md-block">
+                    <div class="col-md-12 d-flex justify-content-between">
+                        <div class="d-flex align-items-center btn-warning btn">
+                            <h4 class="fs-6 d-none d-sm-none d-md-block m-0 fw-normal text-white me-2">
+                                {{ $course->name_category }}
+                            </h4>
+                        </div>
+                        <div class="d-flex">
+                            <a href="" class="d-flex align-items-center btn-secondary btn">
+                                <div class="">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                                            stroke="#667085" stroke-width="1.5" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path d="M15.5 12H9.5" stroke="#667085" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M11.5 9L8.5 12L11.5 15" stroke="#667085" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                                <h4 class="fs-6 d-none d-sm-none d-md-block m-0 fw-normal text-muted ms-2">
+                                    Sebelumnya
+                                </h4>
+                            </a>
+                            <a href="" class="d-flex align-items-center btn-success btn ms-2">
+                                <h4 class="fs-6 d-none d-sm-none d-md-block m-0 fw-normal text-white me-2">
+                                    Selanjutnya
+                                </h4>
+                                <div class="">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                                            stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path d="M8.5 12H14.5" stroke="white" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M12.5 15L15.5 12L12.5 9" stroke="white" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <h4 class="mt-5">Forum Diskusi</h4>
+                        <form action="{{ route('comment', $video_playing->id) }}" method="POST">
+                            @csrf
+                            <textarea class="p-4 form-control form-control-xl @error('content') is-invalid @enderror"
+                                placeholder="Tulis Komentar..." name="content" id="" cols="30" rows="5"></textarea>
+                            @error('content')
+                                <div class="invalid-feedback">
+                                    <i class="bx bx-radio-circle"></i>
+                                    {{ $message }}
+                                </div>
+                            @enderror
+
+                            <div class="d-flex justify-content-end">
+                                <button class="btn btn-info mt-3" name="submit" type="submit">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                                            stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path d="M12 15.5V9.5" stroke="white" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M9 11.5L12 8.5L15 11.5" stroke="white" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    <span>Unggah Komentar</span>
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="col-md-12 mt-5 mb-5">
+                        @foreach ($comments as $comment)
+                            <div class="border border-1 rounded p-4 mb-3">
+                                <div class="row g-0">
+                                    <div class="col-md-12 d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <div class="avatar avatar-xl border border-4 border-primary">
+                                                <img style="object-fit: cover;cursor: pointer;"
+                                                    src="@if ($comment->image == 'default.png') {{ url('assets/static/images/faces/1.jpg') }} @else {{ asset('storage/profile/' . $comment->image) }} @endif"
+                                                    alt="Face 1">
+                                            </div>
+                                            <span class="fw-bold fs-5 ms-3 text-black">{{ $comment->name }}</span>
+                                        </div>
+                                        <div class="d-flex">
+                                            <span class="d-flex"><i
+                                                    class="me-2 pt-1 icon-calendar-2 text-warning"></i>
+                                                {{ date('d M Y', strtotime($comment->created_at)) }}
+                                                </span>
+                                            <span class="ms-4 d-flex"><i
+                                                    class="me-2 pt-1 icon-clock text-warning"></i>
+                                                {{ date('H.i', strtotime($comment->created_at)) }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mt-3">
+                                        {{ $comment->content }}
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
             </div>
         </div>
     </div>

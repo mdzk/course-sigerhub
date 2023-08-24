@@ -69,6 +69,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
@@ -78,40 +79,48 @@
                             <div class="card-body">
                                 <div class="border border-1 rounded">
                                     <div class="card-body">
-                                        <div class="d-flex align-items-center row">
-                                            <div class="col-md-4 py-2">
-                                                <img style="object-fit: cover;height: 250px; width: 100%"
-                                                    class="rounded img-fluid"
-                                                    src="{{ asset('storage/thumbnail/' . $course_recent[0]->thumbnail) }}"
-                                                    alt="Face 1">
-                                            </div>
-                                            <div class="col-md-8 px-2 py-2">
-                                                <h4>{{ $course_recent[0]->title_course }}</h4>
-                                                <div class="d-flex align-items-center my-3">
-                                                    <i class="d-flex fs-4 icon-video-circle text-warning me-2"></i><span>
-                                                        {{ count($course_recent) }} Video</span>
+
+                                        @if ($course_recent->isNotEmpty())
+                                            <div class="d-flex align-items-center row">
+                                                <div class="col-md-4 py-2">
+                                                    <img style="object-fit: cover;height: 250px; width: 100%"
+                                                        class="rounded img-fluid"
+                                                        src="{{ asset('storage/thumbnail/' . $course_recent[0]->thumbnail) }}"
+                                                        alt="Face 1">
                                                 </div>
-                                                <div>{{ Str::limit($course_recent[0]->description, 150) }}</div>
-                                                <div class="col-auto my-3">
-                                                    <a href="{{ url('class/' . $course_recent[0]->slug . '/access') }}"
-                                                        class="btn btn-info btn-lg text-white">
-                                                        <svg style="width: 30px; height: 30px;" viewBox="0 0 26 26"
-                                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path
-                                                                d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
-                                                                stroke="white" stroke-width="1.5" stroke-linecap="round"
-                                                                stroke-linejoin="round" />
-                                                            <path d="M8.5 12H14.5" stroke="white" stroke-width="1.5"
-                                                                stroke-linecap="round" stroke-linejoin="round" />
-                                                            <path d="M12.5 15L15.5 12L12.5 9" stroke="white"
-                                                                stroke-width="1.5" stroke-linecap="round"
-                                                                stroke-linejoin="round" />
-                                                        </svg>
-                                                        <span>Lanjutkan Belajar</span>
-                                                    </a>
+                                                <div class="col-md-8 px-2 py-2">
+                                                    <h4>{{ $course_recent[0]->title_course }}</h4>
+                                                    <div class="d-flex align-items-center my-3">
+                                                        <i
+                                                            class="d-flex fs-4 icon-video-circle text-warning me-2"></i><span>
+                                                            {{ count($course_recent) }} Video</span>
+                                                    </div>
+                                                    <div>{{ Str::limit($course_recent[0]->description, 150) }}</div>
+                                                    <div class="col-auto my-3">
+                                                        <a href="{{ url('class/' . $course_recent[0]->slug . '/access') }}"
+                                                            class="btn btn-info btn-lg text-white">
+                                                            <svg style="width: 30px; height: 30px;" viewBox="0 0 26 26"
+                                                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path
+                                                                    d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                                                                    stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                                                    stroke-linejoin="round" />
+                                                                <path d="M8.5 12H14.5" stroke="white" stroke-width="1.5"
+                                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                                                <path d="M12.5 15L15.5 12L12.5 9" stroke="white"
+                                                                    stroke-width="1.5" stroke-linecap="round"
+                                                                    stroke-linejoin="round" />
+                                                            </svg>
+                                                            <span>Lanjutkan Belajar</span>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        @endif
+
+                                        @if ($course_recent->isEmpty())
+                                            <span>Ayo temukan kelas <a href="{{ route('search') }}">di sini</a></span>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

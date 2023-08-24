@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\EventsController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UsersVerificationController;
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\User\CertificateController;
 use App\Http\Controllers\User\CourseController as UserCourseController;
 use App\Http\Controllers\User\SettingController as UserSettingController;
@@ -34,6 +35,7 @@ Route::get('/class/{slug}', [HomeController::class, 'classShow']);
 Route::get('/class', [HomeController::class, 'classSearch'])->name('search');
 Route::get('/class/{class}/access', [UserCourseController::class, 'access'])->middleware(['auth', 'user']);
 Route::get('/class/{class}/access/{video}', [UserCourseController::class, 'video'])->middleware(['auth', 'user']);
+Route::post('/comment/{id}', [CommentsController::class, 'store'])->name('comment')->middleware(['auth', 'user']);
 
 Route::get('/category/{slug}', [HomeController::class, 'categoryShow']);
 
