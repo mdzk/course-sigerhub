@@ -16,8 +16,10 @@ return new class extends Migration
             $table->string('content');
             $table->unsignedBigInteger('id_course');
             $table->unsignedBigInteger('id_users');
+            $table->unsignedBigInteger('comments_id');
             $table->foreign('id_course')->references('id')->on('course');
             $table->foreign('id_users')->references('id')->on('users');
+            $table->foreign('comments_id')->references('id')->on('comments');
             $table->timestamps();
         });
     }
