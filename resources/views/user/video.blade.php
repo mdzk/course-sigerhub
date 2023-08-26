@@ -112,42 +112,49 @@
                             </h4>
                         </div>
                         <div class="d-flex">
-                            <a href="" class="d-flex align-items-center btn-secondary btn">
-                                <div class="">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
-                                            stroke="#667085" stroke-width="1.5" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                        <path d="M15.5 12H9.5" stroke="#667085" stroke-width="1.5"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M11.5 9L8.5 12L11.5 15" stroke="#667085" stroke-width="1.5"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </div>
-                                <h4 class="fs-6 d-none d-sm-none d-md-block m-0 fw-normal text-muted ms-2">
-                                    Sebelumnya
-                                </h4>
-                            </a>
-                            <a href="" class="d-flex align-items-center btn-success btn ms-2">
-                                <h4 class="fs-6 d-none d-sm-none d-md-block m-0 fw-normal text-white me-2">
-                                    Selanjutnya
-                                </h4>
-                                <div class="">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
-                                            stroke="white" stroke-width="1.5" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                        <path d="M8.5 12H14.5" stroke="white" stroke-width="1.5"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M12.5 15L15.5 12L12.5 9" stroke="white" stroke-width="1.5"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </div>
-                            </a>
+                            @if ($previous_video !== null)
+                                <a href="{{ url('class/' . $class . '/access/' . $previous_video->slug) }}"
+                                    class="d-flex align-items-center btn-secondary btn">
+                                    <div class="">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                                                stroke="#667085" stroke-width="1.5" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                            <path d="M15.5 12H9.5" stroke="#667085" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M11.5 9L8.5 12L11.5 15" stroke="#667085" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </div>
+                                    <h4 class="fs-6 d-none d-sm-none d-md-block m-0 fw-normal text-muted ms-2">
+                                        Sebelumnya
+                                    </h4>
+                                </a>
+                            @endif
+
+                            @if ($next_video !== null)
+                                <a href="{{ url('class/' . $class . '/access/' . $next_video->slug) }}"
+                                    class="d-flex align-items-center btn-success btn ms-2">
+                                    <h4 class="fs-6 d-none d-sm-none d-md-block m-0 fw-normal text-white me-2">
+                                        Selanjutnya
+                                    </h4>
+                                    <div class="">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                                                stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                            <path d="M8.5 12H14.5" stroke="white" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M12.5 15L15.5 12L12.5 9" stroke="white" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </div>
+                                </a>
+                            @endif
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -199,7 +206,7 @@
                                             <span class="d-flex"><i
                                                     class="me-2 pt-1 icon-calendar-2 text-warning"></i>
                                                 {{ date('d M Y', strtotime($comment->created_at)) }}
-                                                </span>
+                                            </span>
                                             <span class="ms-4 d-flex"><i
                                                     class="me-2 pt-1 icon-clock text-warning"></i>
                                                 {{ date('H.i', strtotime($comment->created_at)) }}</span>

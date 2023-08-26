@@ -74,6 +74,18 @@ class CourseController extends Controller
         $videos  = Videos::where('id_course', $course->id)->orderBy('created_at', 'ASC')->get();
 
         $video_playing = Videos::where('slug', $video_slug)->first();
+
+
+        $previous_video = Videos::where('id', '<', $video_playing->id)
+            ->where('id_course', $course->id)
+            ->orderBy('id', 'desc')
+            ->first();
+
+        $next_video = Videos::where('id', '>', $video_playing->id)
+            ->where('id_course', $course->id)
+            ->orderBy('id', 'asc')
+            ->first();
+
         // $video_user    = VideosUsers::join('videos', 'videos.id', 'videos_users.id_videos')
         //     ->join('course', 'course.id', 'videos.id_course')
         //     ->where('course.slug', $class)
@@ -98,7 +110,7 @@ class CourseController extends Controller
             ->orderBy('created_at', 'DESC')
             ->get(['comments.*', 'users.name', 'users.image']);
 
-        return view('user.video', compact('comments', 'course', 'video_user_check', 'video_slug', 'class', 'videos', 'video_playing', 'video_user_total', 'video_total'));
+        return view('user.video', compact('next_video', 'previous_video', 'comments', 'course', 'video_user_check', 'video_slug', 'class', 'videos', 'video_playing', 'video_user_total', 'video_total'));
     }
 
     /**

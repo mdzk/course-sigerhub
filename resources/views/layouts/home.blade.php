@@ -43,7 +43,7 @@
                         <ul class="navbar-nav">
                             <li class="nav-item">
                                 <a class="nav-link {{ setActive('class') }}" href="{{ url('class') }}">Kelas
-                                    inkubasi</a>
+                                    Inkubasi</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link {{ setActive('event') }}" href="{{ url('event') }}">Event</a>
