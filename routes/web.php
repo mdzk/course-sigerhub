@@ -28,6 +28,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('test', function () {
+    $data = [
+        'title_course' => 'Fullstack CodeIgniter 4',
+        'name' => 'Muhammad Dzaky'
+    ];
+
+    return view('pdf.certificate', compact('data'));
+});
+
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->middleware('auth')->name('home');
 
@@ -99,6 +108,7 @@ Route::prefix('dashboard')->middleware(['auth', 'user'])->group(function () {
     Route::get('course/finish', [UserCourseController::class, 'finish'])->name('dashboard-course-finish');
     Route::post('course/video/check/{slug}', [UserCourseController::class, 'check'])->name('video-check');
     Route::get('certificate', [CertificateController::class, 'index'])->name('dashboard-certificate');
+    Route::post('certificate/{slug}', [CertificateController::class, 'export'])->name('export-certificate');
     Route::get('setting', [UserSettingController::class, 'index'])->name('dashboard-setting');
     Route::get('setting/edit', [UserSettingController::class, 'edit'])->name('dashboard-setting-edit');
     Route::post('setting/update', [UserSettingController::class, 'update'])->name('dashboard-setting-update');

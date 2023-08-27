@@ -34,11 +34,18 @@
                                                     {{ date('d M Y', strtotime($course->updated_at)) }}</span>
                                             </div>
                                             <div class="col-auto">
-                                                <a href="{{ route('setting-edit') }}"
+                                                <button
+                                                    onclick="event.preventDefault(); document.getElementById('export-form').submit();"
                                                     class="btn btn-info btn-lg text-white">
                                                     <i class="mt-1 icon-document-download"></i>
                                                     <span>Unduh Sertifikat</span>
-                                                </a>
+                                                </button>
+
+                                                <form id="export-form"
+                                                    action="{{ route('export-certificate', $course->slug) }}" method="POST"
+                                                    class="d-none">
+                                                    @csrf
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
