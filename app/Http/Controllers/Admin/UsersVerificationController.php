@@ -50,10 +50,10 @@ class UsersVerificationController extends Controller
         ]);
 
         Mail::to($data['email'])->send(new AccountRejected($data));
-        Http::asForm()->post('http://localhost:9000/send-message', [
-            'number' => $data['nohp'],
-            'message' => 'Pendaftaran akun anda ditolak',
-        ]);
+        // Http::asForm()->post('http://localhost:9000/send-message', [
+        //     'number' => $data['nohp'],
+        //     'message' => 'Pendaftaran akun anda ditolak',
+        // ]);
         return redirect()->route('users-verification');
     }
 }
