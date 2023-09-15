@@ -6,6 +6,17 @@
 @endpush
 
 @push('scripts')
+    <script>
+        function validateInput(input) {
+            // Hapus semua karakter selain angka dari input
+            input.value = input.value.replace(/[^0-9]/g, '');
+
+            // Batasi panjang input menjadi maksimal 13 karakter
+            if (input.value.length > 13) {
+                input.value = input.value.slice(0, 13);
+            }
+        }
+    </script>
 @endpush
 
 @section('content')
@@ -53,9 +64,8 @@
                                         <input type="number"
                                             class="form-control form-control-xl
                                             @error('nohp') is-invalid @enderror"
-                                            placeholder="08562394061293" name="nohp" maxlength="13"
-                                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                            value="{{ old('nohp', $user->nohp) }}">
+                                            placeholder="08562394061293" name="nohp" oninput="validateInput(this)"
+                                            maxlength="13" value="{{ old('nohp', $user->nohp) }}">
                                         @error('nohp')
                                             <div class="invalid-feedback">
                                                 <i class="bx bx-radio-circle"></i>

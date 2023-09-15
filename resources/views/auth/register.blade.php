@@ -2,6 +2,20 @@
 
 @section('title', 'Register')
 
+@push('scripts')
+    <script>
+        function validateInput(input) {
+            // Hapus semua karakter selain angka dari input
+            input.value = input.value.replace(/[^0-9]/g, '');
+
+            // Batasi panjang input menjadi maksimal 13 karakter
+            if (input.value.length > 13) {
+                input.value = input.value.slice(0, 13);
+            }
+        }
+    </script>
+@endpush
+
 @section('content')
     <div class="row h-100">
         <div class="col-lg-5 col-12">
@@ -77,7 +91,8 @@
                     <div class="form-group position-relative has-icon-right mb-5">
                         <input id="nohp" placeholder="085623541234" type="number"
                             class="form-control form-control-xl @error('nohp') is-invalid @enderror" name="nohp"
-                            value="{{ old('nohp') }}" required autocomplete="nohp" autofocus>
+                            value="{{ old('nohp') }}" oninput="validateInput(this)" maxlength="13" required
+                            autocomplete="nohp" autofocus>
                         <div class="form-control-icon">
                             <i class="icon-call-outgoing"></i>
                         </div>
